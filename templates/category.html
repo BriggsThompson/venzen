@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="hero-spacer">
+        <h5>
+            {{ result_count }} 
+            <a href="{{ first.link }}">{{ first.category }}</a>
+            {% if second %}
+             ->
+            <a href="{{ second.link }}">{{ second.category }}</a>
+            {% endif %}
+            Products
+        </h5>
+    </header>
+
+    <hr>
+
+    {% include "product_iterator.html" %}
+</div>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 """
-Django settings for laxchub project.
+Django settings for venzen project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -48,18 +48,18 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'laxchub.urls'
+ROOT_URLCONF = 'venzen.urls'
 
-WSGI_APPLICATION = 'laxchub.wsgi.application'
+WSGI_APPLICATION = 'venzen.wsgi.application'
 
-
+PRODUCT_SOLR_URL = 'http://127.0.0.1:8983/solr/product'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'laxdeals',
+        'NAME': 'venzen',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',
@@ -67,6 +67,7 @@ DATABASES = {
         
     }
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/

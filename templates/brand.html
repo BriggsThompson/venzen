@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="hero-spacer">
+        <h5>{{ result_count }} {{ brand }} Products</h5>
+    </header>
+
+    <hr>
+
+    {% include "product_iterator.html" %}
+</div>
+
+{% endblock %}
