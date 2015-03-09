@@ -1,12 +1,15 @@
 from django.conf.urls import patterns, include, url
-from home.views import index, search, category, brand
 from django.conf import settings
 from django.conf.urls.static import static
+from home.views import index
+
+from django.contrib import admin
+
+admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', index, name='index'),
-                       url(r'^category/(?P<first>[-\w\d\+]+)/(?P<second>[-\w\d\+]+)', category, name='second-category'),
-                       url(r'^category/(?P<first>[-\w\d\+]+)', category, name='first-category'),
-                       url(r'^brand/(?P<brand>[-\w\d\+]+)', brand, name='brand'),
-                       url(r'^search/$', search, name='search'), ) \
+    url(r'^mongonaut/', include('mongonaut.urls')),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', index, name='index'), ) \
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

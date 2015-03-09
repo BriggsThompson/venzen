@@ -10,6 +10,8 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import mongoengine
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -35,6 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_admin_bootstrapped',
+    'django.contrib.admin',
+    'mongonaut',
     'home'
 )
 
@@ -43,9 +48,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+
 )
 
 ROOT_URLCONF = 'venzen.urls'
@@ -56,6 +61,13 @@ PRODUCT_SOLR_URL = 'http://127.0.0.1:8983/solr/product'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+# DATABASES = {
+#     'default' : {
+#         'ENGINE' : 'django_mongodb_engine',
+#         'NAME' : 'venzen'
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -63,13 +75,10 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',
-        'PORT': '3306',
-        
+        'PORT': '3306'
     }
 }
-
-
-# Internationalization
+        # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
@@ -94,3 +103,5 @@ STATICFILES_DIRS = (
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "templates"),)
+
+mongoengine.connect('venzen')

@@ -33,27 +33,18 @@
 
                             <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">Brands</a>
                             <ul class="dropdown-menu" role="menu">
-                                {% for brand in brands %}
-                                <li><a href="{{ brand.link }}">{{ brand.brand }}</a></li>
-                                {% endfor %}
+
                             </ul>
                         </li>
                         
-                        {% for category in categories %}
                         <li class="dropdown">
         
-                            <a href="{{ category.link }}" class="dropdown-toggle" role="button" aria-expanded="false">{{ category.category }}</a>
+                            <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">Category Test</a>
         
-                            {% if category.value.children %}
                             <ul class="dropdown-menu" role="menu">
-                                {% for child in category.value.children %}
-                                <li><a href="{{ child.link }}">{{ child.value }}</a></li>
-                                {% endfor %}
+                                <li><a href="#">Hi!</a></li>
                             </ul>
-                            {% endif %}
                         </li>
-                        {% endfor %}
-                        
                     </ul>
                 </div>
         
