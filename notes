@@ -1,0 +1,4 @@
+pip install django_admin_bootstrapped
+git clone https://github.com/pydanny/django-mongonaut
+cd django-mongonaut
+python setup.py install
