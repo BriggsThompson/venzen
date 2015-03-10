@@ -12,7 +12,6 @@ create table venue_type (
 drop table if exists `venue`;
 create table venue (
     venueId mediumint primary key not null auto_increment,
-    venueTypeId mediumint not null,
     name varchar(200) not null,
     description text null,
     mission text null,
@@ -23,8 +22,7 @@ create table venue (
     zipcode varchar(50) null,
     phoneNumber varchar(50) null,
     email varchar(100) null,
-    createTimestamp datetime not null,
-    CONSTRAINT `FK_venue_venueTypeId`	FOREIGN KEY (`venueTypeId`)	REFERENCES `venue_type` (`venueTypeId`)
+    createTimestamp datetime not null
 );
 
 drop table if exists `space`;
@@ -69,6 +67,16 @@ create table venue_event (
   createTimestamp datetime not null,
   CONSTRAINT `FK_venue_event_venueId`	FOREIGN KEY (`venueId`)	REFERENCES `venue` (`venueId`),
   CONSTRAINT `FK_venue_event_eventTypeId`	FOREIGN KEY (`eventTypeId`)	REFERENCES `event_type` (`eventTypeId`)
+);
+
+drop table if exists `venue_venue_type`;
+create table venue_venue_type (
+  venueVenueTypeId mediumint primary key not null auto_increment,
+  venueId mediumint not null,
+  venueTypeId mediumint not null,
+  createTimestamp datetime not null,
+  CONSTRAINT `FK_venueVenueTypeId_venueId`	FOREIGN KEY (`venueId`)	REFERENCES `venue` (`venueId`),
+  CONSTRAINT `FK_venueVenueTypeId_eventTypeId`	FOREIGN KEY (`venueTypeId`)	REFERENCES `venue_type` (`venueTypeId`)
 );
 
 

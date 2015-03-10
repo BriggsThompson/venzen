@@ -2,12 +2,62 @@ __author__ = 'briggs'
 
 from django.contrib import admin
 from home.models import Venue, Space, Capacity, SpaceAttribute, SpaceImage, VenueAttribute, VenueImage,\
-    Inclusion, Attribute, Requirement, Detail, SpaceCapacity, VenueType, EventType
+    Inclusion, Attribute, Requirement, Detail, SpaceCapacity, VenueType, EventType, VenueEvent, SpaceImage, \
+    VenueVenueType
 
 
+class SpaceInline(admin.TabularInline):
+    model = Space
+    min_num = 1
+    extra = 0
+    
+class VenueAttributeInline(admin.TabularInline):
+    model = VenueAttribute
+    min_num = 1
+    extra = 0
+
+class VenueEventInline(admin.TabularInline):
+    model = VenueEvent
+    extra = 0
+
+class VenueImageInline(admin.TabularInline):
+    model = VenueImage
+    extra = 0
+
+class SpaceImageInline(admin.TabularInline):
+    model = SpaceImage
+    extra = 0
+
+class SpaceCapacityInline(admin.TabularInline):
+    model = SpaceCapacity
+    extra = 0
+    
+class DetailInline(admin.TabularInline):
+    model = Detail
+    extra = 0
+
+class InclusionInline(admin.TabularInline):
+    model = Inclusion
+    extra = 0
+
+class RequirementInline(admin.TabularInline):
+    model = Requirement
+    extra = 0
+    
+class VenueVenueTypeInline(admin.TabularInline):
+    model = VenueVenueType
+    min_num = 1
+    extra = 0
+    
 class VenueAdmin(admin.ModelAdmin):
     list_display = ('name', 'phoneNumber', 'email')
-
+    inlines = [
+        VenueVenueTypeInline,
+        VenueAttributeInline,
+        VenueEventInline,
+        VenueImageInline,
+        SpaceInline,
+    ]
 
 class SpaceAdmin(admin.ModelAdmin):
     list_display = ('get_venue', 'name')
@@ -16,6 +66,14 @@ class SpaceAdmin(admin.ModelAdmin):
         return obj.venueId.name
     
     get_venue.short_description = 'Venue Name'
+    
+    inlines = [
+        SpaceImageInline,
+        SpaceCapacityInline,
+        DetailInline,
+        InclusionInline,
+        RequirementInline
+    ]
 
 
 class CostAdmin(admin.ModelAdmin):
@@ -106,7 +164,7 @@ class EventTypeAdmin(admin.ModelAdmin):
 
 
 class VenueEventAdmin(admin.ModelAdmin):
-    list_display = ('get_venue', 'get_event', 'get_capacity')
+    list_display = ('get_venue', 'get_event')
 
     def get_venue(self, obj):
         return obj.venueId.name
@@ -116,19 +174,19 @@ class VenueEventAdmin(admin.ModelAdmin):
 
     get_venue.short_description = 'Venue Name'
     get_event.short_description = 'Event Type'
-
-
-admin.site.register(VenueType, VenueTypeAdmin)
-admin.site.register(EventType, EventTypeAdmin)
+    
+    
+# admin.site.register(VenueType, VenueTypeAdmin)
+# admin.site.register(EventType, EventTypeAdmin)
 admin.site.register(Venue, VenueAdmin)
-admin.site.register(Space, SpaceAdmin)
-admin.site.register(Attribute, AttributeAdmin)
-admin.site.register(Capacity, CapacityAdmin)
-admin.site.register(Detail, DetailAdmin)
-admin.site.register(Inclusion, InclusionAdmin)
-admin.site.register(Requirement, RequirementAdmin)
-admin.site.register(SpaceAttribute, SpaceAttributesAdmin)
-admin.site.register(VenueAttribute, VenueAttributesAdmin)
-admin.site.register(SpaceImage, SpaceImagesAdmin)
-admin.site.register(VenueImage, VenueImagesAdmin)
-admin.site.register(SpaceCapacity, SpaceCapacityAdmin)
+# admin.site.register(Space, SpaceAdmin)
+# admin.site.register(Attribute, AttributeAdmin)
+# admin.site.register(Capacity, CapacityAdmin)
+# admin.site.register(Detail, DetailAdmin)
+# admin.site.register(Inclusion, InclusionAdmin)
+# admin.site.register(Requirement, RequirementAdmin)
+# admin.site.register(SpaceAttribute, SpaceAttributesAdmin)
+# admin.site.register(VenueAttribute, VenueAttributesAdmin)
+# admin.site.register(SpaceImage, SpaceImagesAdmin)
+# admin.site.register(VenueImage, VenueImagesAdmin)
+# admin.site.register(SpaceCapacity, SpaceCapacityAdmin)

@@ -28,7 +28,7 @@ class EventType(models.Model):
 
 
 class VenueType(models.Model):
-    venueTypeId = models.AutoField(db_column='attributeId', primary_key=True)  # Field name made lowercase.
+    venueTypeId = models.AutoField(db_column='venueTypeId', primary_key=True)  # Field name made lowercase.
     type = models.CharField(max_length=200)
     createTimestamp = models.DateTimeField(db_column='createTimestamp', default=datetime.now)  # Field name made lowercase.
 
@@ -176,7 +176,7 @@ class VenueAttribute(models.Model):
 
 
 class VenueEvent(models.Model):
-    venueEventId = models.AutoField(db_column='spaceId', primary_key=True)  # Field name made lowercase.
+    venueEventId = models.AutoField(db_column='venueEventId', primary_key=True)  # Field name made lowercase.
     venueId = models.ForeignKey('Venue', db_column='venueId')  # Field name made lowercase.
     eventTypeId = models.ForeignKey('EventType', db_column='eventTypeId')  # Field name made lowercase.
     createTimestamp = models.DateTimeField(db_column='createTimestamp', default=datetime.now) # Field name made lowercase.
@@ -185,7 +185,19 @@ class VenueEvent(models.Model):
         return "{0} - {1}".format(self.venueId.name, self.eventTypeId.type)
 
     class Meta:
-        db_table = 'space'
+        db_table = 'venue_event'
+
+class VenueVenueType(models.Model):
+    venueVenueTypeId = models.AutoField(db_column='venueVenueTypeId', primary_key=True)  # Field name made lowercase.
+    venueId = models.ForeignKey('Venue', db_column='venueId')  # Field name made lowercase.
+    venueTypeId = models.ForeignKey('VenueType', db_column='venueTypeId')  # Field name made lowercase.
+    createTimestamp = models.DateTimeField(db_column='createTimestamp', default=datetime.now) # Field name made lowercase.
+
+    def __unicode__(self):
+        return "{0} - {1}".format(self.venueId.name, self.venueTypeId.type)
+
+    class Meta:
+        db_table = 'venue_venue_type'
 
 class VenueImage(models.Model):
     venueImageId = models.AutoField(db_column='venueImageId', primary_key=True)  # Field name made lowercase.
