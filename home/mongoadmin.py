@@ -1,4 +1,4 @@
-from home.models import Venue#, Space, Cost
+from old.models_bk_mongo import Venue#, Space, Cost
 
 __author__ = 'briggs'
 

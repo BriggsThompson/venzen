@@ -4,3 +4,4 @@ cd django-mongonaut
 python setup.py install
 
 pip install mysql-python
+pip install docutils

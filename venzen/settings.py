@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_admin_bootstrapped',
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'mongonaut',
     'home'
 )
@@ -51,6 +52,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware'
 
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.messages.context_processors.messages',
+    'django.contrib.auth.context_processors.auth'
 )
 
 ROOT_URLCONF = 'venzen.urls'

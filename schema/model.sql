@@ -37,7 +37,7 @@ create table space (
     spaceId mediumint primary key not null auto_increment,
     venueId mediumint not null,
     name varchar(200) not null,
-    description varchar(1000) null,
+    description text null,
     squareFootage mediumInt null,
     width mediumInt null,
     length mediumInt null,
@@ -64,30 +64,30 @@ create table capacity (
     CONSTRAINT `FK_capacity_attributes_spaceId`	FOREIGN KEY (`spaceId`)	REFERENCES `space` (`spaceId`)
 );
 
-drop table if exists `space_attributes`;
-create table space_attributes (
+drop table if exists `space_attribute`;
+create table space_attribute (
     spaceId mediumint primary key not null auto_increment,
     attributeId mediumint not null,
     `value` varchar(100) null,
-    details varchar(1000) null,
+    details text null,
     createTimestamp datetime not null,
-    CONSTRAINT `FK_space_attributes_spaceId`	FOREIGN KEY (`spaceId`)	REFERENCES `space` (`spaceId`),
-    CONSTRAINT `FK_space_attributes_attributeId`	FOREIGN KEY (`attributeId`)	REFERENCES `attribute` (`attributeId`)
+    CONSTRAINT `FK_space_attribute_spaceId`	FOREIGN KEY (`spaceId`)	REFERENCES `space` (`spaceId`),
+    CONSTRAINT `FK_space_attribute_attributeId`	FOREIGN KEY (`attributeId`)	REFERENCES `attribute` (`attributeId`)
 );
 
-drop table if exists `venue_attributes`;
-create table venue_attributes (
+drop table if exists `venue_attribute`;
+create table venue_attribute (
     venueId mediumint primary key not null auto_increment,
     attributeId mediumint not null,
     `value` varchar(100) null,
-    details varchar(1000) null,
+    details text null,
     createTimestamp datetime not null,
-    CONSTRAINT `FK_venue_attributes_venueId`	FOREIGN KEY (`venueId`)	REFERENCES `venue` (`venueId`),
-    CONSTRAINT `FK_venue_attributes_attributeId`	FOREIGN KEY (`attributeId`)	REFERENCES `attribute` (`attributeId`)
+    CONSTRAINT `FK_venue_attribute_venueId`	FOREIGN KEY (`venueId`)	REFERENCES `venue` (`venueId`),
+    CONSTRAINT `FK_venue_attribute_attributeId`	FOREIGN KEY (`attributeId`)	REFERENCES `attribute` (`attributeId`)
 );
 
-drop table if exists `venue_images`;
-create table venue_images (
+drop table if exists `venue_image`;
+create table venue_image (
     venueImageId mediumint primary key not null auto_increment,
     venueId mediumint not null,
     image varchar(1000) null,
@@ -96,8 +96,8 @@ create table venue_images (
     CONSTRAINT `FK_venue_images_venueId`	FOREIGN KEY (`venueId`)	REFERENCES `venue` (`venueId`)
 );
 
-drop table if exists `space_images`;
-create table space_images (
+drop table if exists `space_image`;
+create table space_image (
     spaceImageId mediumint primary key not null auto_increment,
     spaceId mediumint not null,
     image varchar(1000) null,
@@ -137,27 +137,6 @@ create table detail (
 
 
 SET FOREIGN_KEY_CHECKS=1;
-
-
-
-attributes:
-	roof deck
-
-cost:
-	cocktail
-	dining
-	theater style
-
-detail:
-	climate conrol
-	roof deck screen
-	rain
-	access
-	art/exhibitions
-	sound
-	approved vendors
-	membership requirement
-
 
 
 
