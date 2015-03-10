@@ -9,3 +9,121 @@ pip install docutils
 migrations:
  python manage.py makemigrations home
     python manage.py sqlmigrate home 0001
+    
+    
+    
+Change Data Model:
+
+
+
+
+    Event Type (instead of Attribute)
+        - Reception
+        - Seated Meal
+        - Reception + Seated Meal
+        - Meeting / Presentation
+        - Film / Photo Shoot
+        - Raw Space
+        - Ceremony
+        - Cooking Class
+        - Spin / Yoga / Athletic Class
+        
+     Venue Type (operate as tags)
+        - Raw Space
+        - Wine Bar
+        - Country Club
+        - Cultural Venue
+        - Full Service Event Space
+        - Hotel
+        - Loft
+        - Lounge
+        - Restaurant
+        - Bar
+        - Boat
+        - Mansion / Private Estate
+        - Retail Space
+        - Theatre
+        - Rooftop Bar
+        - Meeting Space
+        - Nightclub
+        - Cooking Class ?
+        
+    privacy Type:
+        - private
+        - semi private
+        - large group event
+        
+    Attributes: (Venue Book Features)    - we should call it features. 
+        - Ceremony On Site
+        - Billiards / Darts / Arcade
+        - Bowling
+        - Chefs Table
+        - City Views
+        - Cooking Class
+        - Corkage Allowed
+        - Cyclorama
+        - Ipod Hookup
+        - HandiCap Accessible
+        - Kareoke
+        - Bring Food and Beverages
+        - Outside Space
+        - Sports Viewing
+        - Stage
+        - Water Views
+        - Wifi
+        - Wine Cellar
+        
+        
+    EventUp Filters (venue type)
+        - Banquet Hall
+        - Bar
+        - Cafe 
+        - Country Club
+        - Raw Space
+        - Gallery
+        - Hotel
+        - Meeting Space
+        - Other
+        - Restaurant
+        - Studio
+        - Winery
+        
+    EventUp event type
+    - Birthday Party
+    - Class
+    - Corporate Event
+    - Dinner Party
+    - Filming Location
+    - Launch Party
+    - Meeting
+    - Other
+    - Party
+    - Photo Shoot
+    - Social Event
+    - Wedding
+    
+    EventUp Ammentity (attributes?)
+    - A/V Equipment
+    - BYOB
+    - Beachfront
+    - Beer/Wine Only
+    - Catering Available
+    - Full Bar
+    - Great Views
+    - Handicap Accessible
+    - Indoor
+    - Kosher
+    - Media Room
+    - Non-Smoking
+    - Non-Union
+    - Outdoor
+    - Outside Catering
+    - Pool
+    - Rooftop
+    - Rooms Available
+    - Smoking
+    - Spa
+    - Street Parking
+    - Theater
+    - Valet Paring
+    - Wifi

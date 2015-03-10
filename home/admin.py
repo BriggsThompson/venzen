@@ -1,8 +1,8 @@
 __author__ = 'briggs'
 
 from django.contrib import admin
-from home.models import Venue, Space, Capacity, Cost, SpaceAttribute, SpaceImage, VenueAttribute, VenueImage,\
-    Inclusion, Attribute, Requirement, Detail, SpaceCapacity
+from home.models import Venue, Space, Capacity, SpaceAttribute, SpaceImage, VenueAttribute, VenueImage,\
+    Inclusion, Attribute, Requirement, Detail, SpaceCapacity, VenueType, EventType
 
 
 class VenueAdmin(admin.ModelAdmin):
@@ -24,7 +24,7 @@ class CostAdmin(admin.ModelAdmin):
 
 class AttributeAdmin(admin.ModelAdmin):
     
-    list_display = ('key', 'value')
+    list_display = ('type',)
 
 
 class CapacityAdmin(admin.ModelAdmin):
@@ -98,9 +98,29 @@ class SpaceCapacityAdmin(admin.ModelAdmin):
     get_capacity.short_description = 'Type'
 
 
+class VenueTypeAdmin(admin.ModelAdmin):
+    list_display = ('type',)
 
+class EventTypeAdmin(admin.ModelAdmin):
+    list_display = ('type',)
+
+
+class VenueEventAdmin(admin.ModelAdmin):
+    list_display = ('get_venue', 'get_event', 'get_capacity')
+
+    def get_venue(self, obj):
+        return obj.venueId.name
+
+    def get_event(self, obj):
+        return obj.eventTypeId.type
+
+    get_venue.short_description = 'Venue Name'
+    get_event.short_description = 'Event Type'
+
+
+admin.site.register(VenueType, VenueTypeAdmin)
+admin.site.register(EventType, EventTypeAdmin)
 admin.site.register(Venue, VenueAdmin)
-admin.site.register(Cost, CostAdmin)
 admin.site.register(Space, SpaceAdmin)
 admin.site.register(Attribute, AttributeAdmin)
 admin.site.register(Capacity, CapacityAdmin)
