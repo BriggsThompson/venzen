@@ -9,18 +9,22 @@ class Attribute(models.Model):
     value = models.CharField(max_length=1000, blank=True)
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
+    def __unicode__(self):
+        return "{0} - {1}".format(self.key, self.value)
+    
     class Meta:
-        managed = False
         db_table = 'attribute'
 
 
 class Capacity(models.Model):
     capacityId = models.AutoField(db_column='capacityId', primary_key=True)  # Field name made lowercase.
     type = models.CharField(max_length=200)
-    createtimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
+    createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
+    def __unicode__(self):
+        return self.type
+    
     class Meta:
-        managed = False
         db_table = 'capacity'
 
 
@@ -31,7 +35,6 @@ class SpaceCapacity(models.Model):
     capacity = models.IntegerField()
 
     class Meta:
-        managed = False
         db_table = 'space_capacity'
 
 
@@ -48,7 +51,6 @@ class Cost(models.Model):
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'cost'
 
 
@@ -60,7 +62,6 @@ class Detail(models.Model):
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'detail'
 
 
@@ -72,7 +73,6 @@ class Inclusion(models.Model):
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'inclusion'
 
 
@@ -81,9 +81,11 @@ class Requirement(models.Model):
     spaceId = models.ForeignKey('Space', db_column='spaceId')  # Field name made lowercase.
     requirement = models.CharField(max_length=1000)
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
-
+    
+    def __unicode__(self):
+        return "{0} - {1}".format(self.spaceId, self.requirement)
+    
     class Meta:
-        managed = False
         db_table = 'requirement'
 
 
@@ -98,20 +100,22 @@ class Space(models.Model):
     height = models.IntegerField(blank=True, null=True)
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
+    def __unicode__(self):
+        return "{0} - {1}".format(self.venueId.name, self.name)
+    
     class Meta:
-        managed = False
         db_table = 'space'
 
 
 class SpaceAttribute(models.Model):
-    spaceId = models.AutoField(Space, db_column='spaceId', primary_key=True)  # Field name made lowercase.
+    spaceAttributeId = models.AutoField(db_column='spaceAttributeId', primary_key=True)  # Field name made lowercase.
+    spaceId = models.ForeignKey(Space, db_column='spaceId')  # Field name made lowercase.
     attributeId = models.ForeignKey(Attribute, db_column='attributeId')  # Field name made lowercase.
     value = models.CharField(max_length=100, blank=True)
     details = models.TextField(blank=True)
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'space_attribute'
 
 
@@ -123,7 +127,6 @@ class SpaceImage(models.Model):
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'space_image'
 
 
@@ -141,8 +144,10 @@ class Venue(models.Model):
     email = models.CharField(max_length=100, blank=True)
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
+    def __unicode__(self):
+        return "{0} - {1}".format(self.name, self.venueId)
+
     class Meta:
-        managed = False
         db_table = 'venue'
 
 
@@ -155,7 +160,6 @@ class VenueAttribute(models.Model):
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'venue_attribute'
 
 
@@ -167,5 +171,4 @@ class VenueImage(models.Model):
     createTimestamp = models.DateTimeField(db_column='createTimestamp')  # Field name made lowercase.
 
     class Meta:
-        managed = False
         db_table = 'venue_image'
