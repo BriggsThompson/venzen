@@ -27,7 +27,7 @@ from mongoengine import Document, StringField, DateTimeField, ListField, Referen
 #     createTimestamp = DateTimeField(default=datetime.now())
 
 
-class Venue(Document):
+class Venue2(Document):
     venueId = StringField(max_length=26, primary_key=True)
     name = StringField(max_length=100)
     description = StringField()

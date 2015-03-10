@@ -1,4 +1,4 @@
-from old.models_bk_mongo import Venue#, Space, Cost
+from old.models_bk_mongo import Venue2#, Space, Cost
 
 __author__ = 'briggs'
 
@@ -14,4 +14,4 @@ class VenueAdmin(MongoAdmin):
     #prepopulated_fields = { 'spaces_costs_daysofweek' : ('mon', 'tue', 'wed',)}
     ordering = ('name', 'description', 'mission')
 
-Venue.mongoadmin = VenueAdmin()
+Venue2.mongoadmin = VenueAdmin()
