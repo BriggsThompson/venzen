@@ -2,7 +2,7 @@ __author__ = 'briggs'
 
 from django.contrib import admin
 from home.models import Venue, Space, Capacity, SpaceAttribute, SpaceImage, VenueAttribute, VenueImage,\
-    Inclusion, Attribute, Requirement, Detail, SpaceCapacity, VenueType, EventType, VenueEvent, SpaceImage, \
+    Inclusion, Attribute, Requirement, Detail, VenueType, EventType, VenueEvent, SpaceImage, \
     VenueVenueType
 
 
@@ -10,44 +10,61 @@ class SpaceInline(admin.TabularInline):
     model = Space
     min_num = 1
     extra = 0
+
+
+class CapacityInline(admin.TabularInline):
+    model = Capacity
+    min_num = 1
+    extra = 0
+
     
 class VenueAttributeInline(admin.TabularInline):
     model = VenueAttribute
     min_num = 1
     extra = 0
 
+
+class SpaceAttributeInline(admin.TabularInline):
+    model = SpaceAttribute
+    min_num = 1
+    extra = 0
+    
+    
 class VenueEventInline(admin.TabularInline):
     model = VenueEvent
     extra = 0
+
 
 class VenueImageInline(admin.TabularInline):
     model = VenueImage
     extra = 0
 
+
 class SpaceImageInline(admin.TabularInline):
     model = SpaceImage
     extra = 0
 
-class SpaceCapacityInline(admin.TabularInline):
-    model = SpaceCapacity
-    extra = 0
     
 class DetailInline(admin.TabularInline):
     model = Detail
     extra = 0
 
+
 class InclusionInline(admin.TabularInline):
     model = Inclusion
     extra = 0
 
+
 class RequirementInline(admin.TabularInline):
     model = Requirement
     extra = 0
+
     
 class VenueVenueTypeInline(admin.TabularInline):
     model = VenueVenueType
     min_num = 1
     extra = 0
+
     
 class VenueAdmin(admin.ModelAdmin):
     list_display = ('name', 'phoneNumber', 'email')
@@ -59,6 +76,7 @@ class VenueAdmin(admin.ModelAdmin):
         SpaceInline,
     ]
 
+
 class SpaceAdmin(admin.ModelAdmin):
     list_display = ('get_venue', 'name')
     
@@ -68,8 +86,9 @@ class SpaceAdmin(admin.ModelAdmin):
     get_venue.short_description = 'Venue Name'
     
     inlines = [
+        SpaceAttributeInline,
         SpaceImageInline,
-        SpaceCapacityInline,
+        CapacityInline,
         DetailInline,
         InclusionInline,
         RequirementInline
@@ -179,7 +198,7 @@ class VenueEventAdmin(admin.ModelAdmin):
 # admin.site.register(VenueType, VenueTypeAdmin)
 # admin.site.register(EventType, EventTypeAdmin)
 admin.site.register(Venue, VenueAdmin)
-# admin.site.register(Space, SpaceAdmin)
+admin.site.register(Space, SpaceAdmin)
 # admin.site.register(Attribute, AttributeAdmin)
 # admin.site.register(Capacity, CapacityAdmin)
 # admin.site.register(Detail, DetailAdmin)

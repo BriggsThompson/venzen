@@ -5,7 +5,8 @@ python setup.py install
 
 pip install mysql-python
 pip install docutils
-
+pip install django-enumfield
+ 
 migrations:
  python manage.py makemigrations home
     python manage.py sqlmigrate home 0001
