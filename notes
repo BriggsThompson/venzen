@@ -15,6 +15,11 @@ migrations:
     
 Change Data Model:
 
+EC2:
+http://www.lecloud.net/post/61401763496/install-update-to-python-2-7-and-latest-pip-on
+    pip install virtualenv
+    ssh -i venzen.pem ec2-user@54.153.108.20
+    mysqladmin -u root password 'venzenson'
 
 
 
