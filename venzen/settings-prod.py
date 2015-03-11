@@ -26,9 +26,12 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '54.67.49.246']
+ALLOWED_HOSTS = ['127.0.0.1', '54.153.13.143', 'ec2-54-153-13-143.us-west-1.compute.amazonaws.com']
 
 
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CONN_MAX_AGE = 10000
 # Application definition
 
 INSTALLED_APPS = (
@@ -95,7 +98,40 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-STATIC_ROOT = '/var/lib/venzen/static'
+STATIC_ROOT = '/var/www/venzen/static'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "templates"),)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+        },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/venzen/venzen.debug.log',
+            'formatter': 'verbose'
+        },
+        },
+    'loggers': {
+        'django': {
+            'handlers':['file'],
+            'propagate': True,
+            'level':'DEBUG',
+            },
+        'MYAPP': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            },
+        }
+}

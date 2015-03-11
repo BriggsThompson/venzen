@@ -17,6 +17,12 @@ Change Data Model:
 
 EC2:
 http://www.lecloud.net/post/61401763496/install-update-to-python-2-7-and-latest-pip-on
+
+sudo yum install python-devel
+sudo yum install libevent-devel
+yum install mysql-devel
+easy_install gevent
+
     pip install virtualenv
     ssh -i venzen.pem ec2-user@54.67.49.246
     mysqladmin -u root password 'venzenson'
