@@ -4,8 +4,8 @@
     <facet type="django" name="Django">
       <configuration>
         <option name="rootFolder" value="$MODULE_DIR$/home" />
-        <option name="settingsModule" value="" />
-        <option name="manageScript" value="" />
+        <option name="settingsModule" value="settings.py" />
+        <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
       </configuration>
     </facet>
@@ -15,11 +15,51 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHP">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/symfony/yaml" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/sebastian/comparator" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/php-timer" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/phpunit" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/sebastian/environment" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/php-code-coverage" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/doctrine/instantiator" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/php-token-stream" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/phpunit-mock-objects" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/sebastian/version" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/php-text-template" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/php-file-iterator" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/sebastian/exporter" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/sebastian/diff" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/composer" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/symfony/yaml" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/sebastian/comparator" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/php-timer" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/phpunit" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/sebastian/environment" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/php-code-coverage" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/doctrine/instantiator" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/php-token-stream" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/phpunit-mock-objects" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/sebastian/version" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/php-text-template" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/phpunit/php-file-iterator" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/sebastian/exporter" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/sebastian/diff" />
+          <root url="file://$MODULE_DIR$/../laxdeals-util/apai-io/vendor/composer" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
+        <option value="$MODULE_DIR$/static/assets/social-buttons" />
         <option value="$MODULE_DIR$/templates" />
       </list>
     </option>
