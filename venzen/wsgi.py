@@ -11,13 +11,11 @@ import os, site, sys
 from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "venzen.settings")
 
-
-
-
-
-SITE_DIR = '/home/ubuntu/web/venzen.com/app/'
+SITE_DIR = '/home/ubuntu/web/venzen.com/venzen/'
+APP_DIR = '/home/ubuntu/web/venzen.com/venzen/venzen/'
 site.addsitedir(SITE_DIR)
 sys.path.append(SITE_DIR)
+sys.path.append(APP_DIR)
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'venzen.settings-prod'
 #application = django.core.handlers.wsgi.WSGIHandler()
