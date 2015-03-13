@@ -30,9 +30,8 @@ http://www.lecloud.net/post/61401763496/install-update-to-python-2-7-and-latest-
     https://jasonpowell42.wordpress.com/2013/04/05/install-apache-2-4-4-on-centos-6-4/
     http://micewww.pp.rl.ac.uk/projects/maus/wiki/MAUSDjangoApache_Deploying_Django_under_Apache
     export LD_LIBRARY_PATH=/var/lib/venzen/venv/lib
-    # bad version... yum groupinstall -y "Web Server" //http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-LAMP.html
-    apache config /etc/httpd/conf/httpd.conf
-
+    apache config /usr/local/apache2/conf/httpd.conf
+    /usr/local/apache2/bin/apachectl
 
 
 DocumentRoot "/var/www/venzen/static/"
