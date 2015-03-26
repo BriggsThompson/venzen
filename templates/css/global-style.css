@@ -1,7 +1,7 @@
 @import url(../assets/animate/animate.css);
 @import url(../assets/social-buttons/css/rrssb.css);
 @import url(../assets/easy-pie-chart/css/easypiechart.css);
-@import url(http://fonts.googleapis.com/css?family=Francois+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Francois+One);
 @import url(http://fonts.googleapis.com/css?family=Didact+Gothic:400,500,700);
 /*  
 Theme Name: Boomerang 2 - MultiPurpose Website Template      
@@ -375,7 +375,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Francois Sans", sans-serif;
+  font-family: "Francois One", sans-serif, normal;
 }
 h1,
 h2,
@@ -383,25 +383,26 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.2em;
   margin-bottom: 0.7em;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 h1 {
-  font-size: 29px;
+  font-size: 36px;
+  margin-bottom: 1rem;
 }
 h2 {
-  font-size: 25px;
+  font-size: 30px;
 }
 h3 {
-  font-size: 23px;
+  font-size: 28px;
 }
 h4 {
-  font-size: 19px;
+  font-size: 24px;
 }
 h5 {
-  font-size: 17px;
+  font-size: 16px;
 }
 h6 {
   font-size: 14px;
@@ -1205,7 +1206,7 @@ header .navbar-fixed .navbar {
   margin-right: 0;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Francois Sans", sans-serif;
+  font-family: "Francois One", sans-serif, normal;
   color: #ffffff;
   text-transform: uppercase;
   -webkit-transition: all 0.25s ease-out;
@@ -1246,7 +1247,7 @@ header .navbar-fixed .navbar {
   margin-right: 0;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Francois Sans", sans-serif;
+  font-family: "Francois One", sans-serif, normal;
   color: #ffffff;
   text-transform: uppercase;
   -webkit-transition: all 0.25s ease-out;
@@ -1269,7 +1270,7 @@ header .navbar-fixed .navbar {
   padding: 14px 16px;
   margin-right: 0;
   font-size: 14px;
-  font-family: "Francois Sans", sans-serif;
+  font-family: "Francois One", sans-serif, normal;
   color: #ffffff;
   text-transform: uppercase;
   font-weight: 500;
@@ -1510,12 +1511,11 @@ header .navbar-fixed .navbar {
 }
 .navbar-wp .dropdown-menu .mega-nav-section-title {
   font-size: 14px;
-  font-family: "Francois Sans", sans-serif;
+  font-family: "Francois One", sans-serif, normal;
   margin: 0 0 10px 0;
-  text-transform: capitalize;
   color: #333333;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 400;
 }
 .navbar-wp .dropdown-menu .mega-nav-section {
   padding: 25px 0 10px 0;
@@ -1570,7 +1570,7 @@ header .navbar-fixed .navbar {
   margin-right: 0;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Francois Sans", sans-serif;
+  font-family: "Francois One", sans-serif, normal;
   text-transform: uppercase;
 }
 .navbar-wp .navbar-nav > li > a.dropdown-form-toggle {
@@ -1662,11 +1662,11 @@ header .navbar-fixed .navbar {
   font-size: 20px;
   font-weight: 500;
   line-height: 100%;
-  text-transform: capitalize;
+  text-transform: uppercase;
   color: #333333;
 }
 .pg-opt .breadcrumb {
-  float: right;
+  float: left;
   margin: 0;
   padding: 16px 15px 16px 0;
   padding-right: -15px;
@@ -2161,7 +2161,7 @@ header .navbar-fixed .navbar {
   font-size: 24px;
   line-height: 30px;
   font-weight: 500;
-  text-transform: capitalize;
+  text-transform: uppercase;
   margin: 20px 0 20px 0;
   padding: 0;
   text-align: center;
@@ -2806,13 +2806,13 @@ header .navbar-fixed .navbar {
   padding: 0;
   font-size: 16px;
   font-weight: 400;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 .panel-sidebar-1 h4 {
   padding: 15px;
   font-size: 13px;
   font-weight: normal;
-  text-transform: capitalize;
+  text-transform: uppercase;
   color: #6196ca;
 }
 .panel-sidebar-1 .panel-body h4 {
@@ -2854,65 +2854,23 @@ header .navbar-fixed .navbar {
 .icon-block {
   margin-bottom: 20px;
 }
-.icon-block.icon-block-1 .icon-block-item {
+.icon-block .icon-block-item {
   width: 20%;
   display: table-cell;
   vertical-align: top;
   font-size: 64px;
   text-align: center;
-  color: #333333;
 }
-.icon-block.icon-block-1 .icon-block-body {
+.icon-block .icon-block-body {
   display: table-cell;
   vertical-align: top;
   padding-left: 15px;
 }
-.icon-block.icon-block-1 .icon-block-body .title {
+.icon-block .icon-block-body .title {
   margin-bottom: 5px;
   color: #333333;
 }
-.icon-block.icon-block-1 .icon-block-body p {
-  margin: 0;
-}
-.icon-block.icon-block-2 .icon-block-item {
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
-  border-radius: 2px;
-  display: block;
-  float: left;
-  font-size: 46px;
-  text-align: center;
-}
-.icon-block.icon-block-2 .icon-block-body {
-  padding-left: 115px;
-}
-.icon-block.icon-block-2 .icon-block-body .title {
-  margin-bottom: 5px;
-  color: #333333;
-}
-.icon-block.icon-block-2 .icon-block-body p {
-  margin: 0;
-}
-.icon-block.icon-block-3 .icon-block-item {
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
-  border-radius: 100px;
-  display: block;
-  float: left;
-  font-size: 46px;
-  text-align: center;
-  color: #333333;
-}
-.icon-block.icon-block-3 .icon-block-body {
-  padding-left: 115px;
-}
-.icon-block.icon-block-3 .icon-block-body .title {
-  margin-bottom: 5px;
-  color: #333333;
-}
-.icon-block.icon-block-3 .icon-block-body p {
+.icon-block .icon-block-body p {
   margin: 0;
 }
 .hov {
@@ -3052,7 +3010,7 @@ header .navbar-fixed .navbar {
 }
 .milestone-counter .milestone-count {
   font-size: 72px;
-  font-family: "Francois Sans", sans-serif;
+  font-family: "Francois One", sans-serif, normal;
   margin-bottom: 20px;
   font-weight: 700;
   text-transform: uppercase;
@@ -5782,7 +5740,7 @@ ul.list-listings.blog-list .list-item-info a {
 }
 .post-item.style2 .post-meta .date {
   color: #333333;
-  font-family: "Francois Sans", sans-serif;
+  font-family: "Francois One", sans-serif, normal;
   padding-bottom: 15px;
   margin-bottom: 15px;
   text-align: center;
@@ -6915,7 +6873,7 @@ footer h4 {
   margin-top: 20px;
   color: #ccc;
   margin-bottom: 20px;
-  text-transform: capitalize;
+  text-transform: uppercase;
   font-size: 14px;
   font-weight: 500;
 }
@@ -8532,7 +8490,7 @@ div.tabbable.wp-tabs-right ul.nav-tabs li.active a {
   padding: 0;
   font-size: 16px;
   font-weight: 500;
-  text-transform: capitalize;
+  text-transform: uppercase;
   color: #333333;
 }
 .panel-dark {
@@ -10802,7 +10760,7 @@ https://github.com/videojs/video.js/blob/master/src/css/video-js.less */
     margin-right: 0;
     font-size: 14px;
     font-weight: 500;
-    font-family: "Francois Sans", sans-serif;
+    font-family: "Francois One", sans-serif, normal;
     color: #ffffff;
     text-transform: uppercase;
   }
