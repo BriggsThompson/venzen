@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    's3direct',
     'home'
 )
 
@@ -62,15 +63,6 @@ ROOT_URLCONF = 'venzen.urls'
 WSGI_APPLICATION = 'venzen.wsgi.application'
 
 PRODUCT_SOLR_URL = 'http://127.0.0.1:8983/solr/product'
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
-# DATABASES = {
-#     'default' : {
-#         'ENGINE' : 'django_mongodb_engine',
-#         'NAME' : 'venzen'
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -107,3 +99,15 @@ STATICFILES_DIRS = (
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "templates"),)
+
+S3DIRECT_REGION = 'us-west-1'
+
+AWS_SECRET_ACCESS_KEY = 'AKIAIE3RC5XDNLEZ7YMQ'
+AWS_ACCESS_KEY_ID = 'O/KdJx3zrMUxfAfsdAVZvwYoXwuuF7pdcsGfSrXQ'
+#AWS_STORAGE_BUCKET_NAME = 'venzen-images'
+AWS_STORAGE_BUCKET_NAME = 'rentsy-images'
+
+S3DIRECT_DESTINATIONS = {
+    #'space_images': ('local/space/images', lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'space_images': ('test', lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+}

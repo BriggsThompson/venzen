@@ -14,19 +14,16 @@ class SpaceInline(admin.TabularInline):
 
 class CapacityInline(admin.TabularInline):
     model = Capacity
-    min_num = 1
     extra = 0
 
     
 class VenueAttributeInline(admin.TabularInline):
     model = VenueAttribute
-    min_num = 1
     extra = 0
 
 
 class SpaceAttributeInline(admin.TabularInline):
     model = SpaceAttribute
-    min_num = 1
     extra = 0
     
     

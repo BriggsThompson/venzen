@@ -10,5 +10,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/s3direct/', include('s3direct.urls')),
     url(r'^$', index, name='index'), ) \
               + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

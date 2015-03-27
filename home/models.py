@@ -2,23 +2,7 @@ from __future__ import unicode_literals
 from datetime import datetime
 
 from django.db import models
-from django_enumfield import enum
-
-
-class CapacityEnum(enum.Enum):
-    COCKTAIL = 'Cocktail'
-    DINING = 'Seated For Dining'
-    THEATER = 'Theater Style'
-    WORKOUT = 'Workout Activity'
-
-    # labels = {
-    # COCKTAIL: 'Cocktail',
-    #     DINING: 'Seated For Dining',
-    #     THEATER: 'Theater Style',
-    #     WORKOUT: 'Workout Activity'
-    # }
-    #
-    # translation = {v: k for k, v in labels.iteritems()}
+from s3direct.fields import S3DirectField
 
 
 class Attribute(models.Model):
@@ -137,7 +121,7 @@ class Space(models.Model):
     costStartRange = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=6)
     costEndRange = models.DecimalField(blank=True, null=True, decimal_places=2, max_digits=6)
     costDetails = models.CharField(max_length=500, blank=True, null=True)
-    nonProfitDiscount = models.CharField(max_length=50)
+    nonProfitDiscount = models.CharField(max_length=50, blank=True, null=True)
     createTimestamp = models.DateTimeField(db_column='createTimestamp', default=datetime.now)
 
     def __unicode__(self):
@@ -160,7 +144,7 @@ class SpaceAttribute(models.Model):
 class SpaceImage(models.Model):
     spaceImageId = models.AutoField(db_column='spaceImageId', primary_key=True)
     spaceId = models.ForeignKey(Space, db_column='spaceId')
-    image = models.CharField(max_length=1000, blank=True)
+    image = S3DirectField(dest='space_images')
     order = models.IntegerField(blank=True, null=True)
     createTimestamp = models.DateTimeField(db_column='createTimestamp', default=datetime.now)
 
@@ -180,6 +164,7 @@ class Venue(models.Model):
     zipcode = models.CharField(max_length=50, blank=True)
     phoneNumber = models.CharField(db_column='phoneNumber', max_length=50, blank=True)
     email = models.CharField(max_length=100, blank=True)
+    totalCapacity = models.IntegerField(blank=True, null=True)
     createTimestamp = models.DateTimeField(db_column='createTimestamp', default=datetime.now)
 
     def __unicode__(self):

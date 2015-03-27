@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    's3direct',
     'home'
 )
 

@@ -6,6 +6,7 @@ python setup.py install
 pip install mysql-python
 pip install docutils
 pip install django-enumfield
+pip install django-s3direct
  
 migrations:
  python manage.py makemigrations home

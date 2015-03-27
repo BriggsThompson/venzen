@@ -22,6 +22,7 @@ create table venue (
     zipcode varchar(50) null,
     phoneNumber varchar(50) null,
     email varchar(100) null,
+    totalCapacity mediumint null,
     createTimestamp datetime not null
 );
 
