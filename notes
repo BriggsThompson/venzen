@@ -56,8 +56,15 @@ WSGIPythonPath /var/lib/venzen:/var/lib/venzen/venv/bin:/var/lib/venzen/venv/lib
 
 
 Alias /static/ /var/www/venzen/static/
+/etc/nginx/sites-available/venzen.com
 
+ sudo /etc/init.d/nginx restart
+ 
+uwsgi nano /etc/init/uwsgi.conf
+kill -9 `ps aux | grep wsgi | grep -v grep | awk '{print $2}'`
+sudo service uwsgi start
 
+nginx config /etc/nginx/nginx.conf
 
     Event Type (instead of Attribute)
         - Reception
