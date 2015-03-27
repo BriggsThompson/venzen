@@ -1,0 +1,13 @@
+.spaces h6{display:inline;margin-bottom: 0;}
+.btn-default {
+  color: #333;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.venuetag{font-size: 12px;font-weight: bold}
+.infobutton {text-align: center!important;margin-top: 1rem;display: block;}
+.wp-block .wp-block-body {
+	padding-top: 0;
+}
+.tags{margin-bottom: 1rem;}
+.pg-opt .breadcrumb {float:left;}
