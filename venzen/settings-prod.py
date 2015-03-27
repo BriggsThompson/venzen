@@ -25,12 +25,14 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '54.153.13.143', 'ec2-54-153-13-143.us-west-1.compute.amazonaws.com']
+ALLOWED_HOSTS = ['54.153.13.143']
 
-
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-CONN_MAX_AGE = 10000
+DOMAIN_NAME = '54.153.13.143'
+#CSRF_COOKIE_NAME = 'venzen_csrf'
+#CSRF_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_DOMAIN = DOMAIN_NAME
+#CONN_MAX_AGE = 10000
 # Application definition
 
 INSTALLED_APPS = (
@@ -59,6 +61,8 @@ MIDDLEWARE_CLASSES = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.contrib.auth.context_processors.auth'
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.csrf'
 )
 
 ROOT_URLCONF = 'venzen.urls'
