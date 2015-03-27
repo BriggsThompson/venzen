@@ -104,10 +104,6 @@ class AttributeAdmin(admin.ModelAdmin):
     list_display = ('type',)
 
 
-class CapacityAdmin(admin.ModelAdmin):
-    list_display = ('type',)
-
-
 class DetailAdmin(admin.ModelAdmin):
     pass
 
@@ -169,7 +165,8 @@ class SpaceCapacityAdmin(admin.ModelAdmin):
 
     def get_capacity(self, obj):
         return obj.capacityId.type
-    
+
+
     get_venue.short_description = 'Venue Name'
     get_space.short_description = 'Space Name'
     get_capacity.short_description = 'Type'
@@ -196,11 +193,11 @@ class VenueEventAdmin(admin.ModelAdmin):
     
     
 # admin.site.register(VenueType, VenueTypeAdmin)
-# admin.site.register(EventType, EventTypeAdmin)
+
 admin.site.register(Venue, VenueAdmin)
 admin.site.register(Space, SpaceAdmin)
-# admin.site.register(Attribute, AttributeAdmin)
-# admin.site.register(Capacity, CapacityAdmin)
+admin.site.register(Attribute, AttributeAdmin)
+admin.site.register(EventType, EventTypeAdmin)
 # admin.site.register(Detail, DetailAdmin)
 # admin.site.register(Inclusion, InclusionAdmin)
 # admin.site.register(Requirement, RequirementAdmin)
