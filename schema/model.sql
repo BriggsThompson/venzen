@@ -131,6 +131,16 @@ create table space_image (
     CONSTRAINT `FK_space_images_spaceId`	FOREIGN KEY (`spaceId`)	REFERENCES `space` (`spaceId`)
 );
 
+drop table if exists `space_floorplan`;
+create table space_floorplan (
+    spaceFloorplanId mediumint primary key not null auto_increment,
+    spaceId mediumint not null,
+    floorplan varchar(1000) null,
+    `order` mediumint null,
+    createTimestamp datetime not null,
+    CONSTRAINT `FK_space_floorplan_spaceId`	FOREIGN KEY (`spaceId`)	REFERENCES `space` (`spaceId`)
+);
+
 drop table if exists `requirement`;
 create table requirement (
     requirementId mediumint primary key not null auto_increment,

@@ -119,16 +119,27 @@ AWS_ACCESS_KEY_ID = 'AKIAJJE6EE7SWXKQMBYQ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'venzen-images'
 IMAGE_SPACE_S3_PATH = 'production/space/images'
+IMAGE_FLOORPLAN_S3_PATH = 'production/space/floorplans'
 
 
-def create_filename(filename):
+def create_filename(filename, path):
     import uuid
     ext = filename.split('.')[-1]
     filename = '%s.%s' % (uuid.uuid4().hex, ext)
-    return os.path.join(IMAGE_SPACE_S3_PATH, filename)
+    return os.path.join(path, filename)
+
+
+def create_space_filename(filename):
+    return create_filename(filename, IMAGE_SPACE_S3_PATH)
+
+
+def create_floorplan_filename(filename):
+    return create_filename(filename, IMAGE_FLOORPLAN_S3_PATH)
+
 
 S3DIRECT_DESTINATIONS = {
-    'space_images': (create_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'space_images': (create_space_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'floorplan_images': (create_floorplan_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
 }
 
 LOGGING = {

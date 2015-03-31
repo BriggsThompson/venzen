@@ -172,6 +172,30 @@ class SpaceImage(models.Model):
             db_table = 'space_image'
 
 
+class SpaceFloorplan(models.Model):
+    spaceFloorplanId = models.AutoField(db_column='spaceFloorplanId', primary_key=True)
+    spaceId = models.ForeignKey(Space, db_column='spaceId')
+    floorplan = S3DirectField(dest='floorplan_images')
+    order = models.IntegerField(blank=True, null=True)
+    createTimestamp = models.DateTimeField(db_column='createTimestamp', default=datetime.now)
+
+    def __unicode__(self):
+        return "{0} - {1}".format(self.spaceId.name, self.spaceFloorplanId)
+
+    def delete(self, *args, **kwargs):
+        # You have to prepare what you need before delete the model
+        # Delete the model before the file
+        super(SpaceFloorplan, self).delete(*args, **kwargs)
+        # Delete the file after the model
+        conn = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY)
+        bucket = Bucket(conn, settings.AWS_STORAGE_BUCKET_NAME)
+        key = Key(bucket)
+        key.key = "{0}/{1}".format(settings.IMAGE_FLOORPLAN_S3_PATH, self.floorplan.rsplit('/', 1)[1])
+        bucket.delete_key(key)
+
+
+    class Meta:
+        db_table = 'space_floorplan'
 
 
 class Venue(models.Model):
