@@ -174,8 +174,8 @@ drop table if exists `detail`;
 create table detail (
     detailId mediumint primary key not null auto_increment,
     spaceId mediumint not null,
-    title varchar(100) not null,
-    description varchar(100) not null,
+    title varchar(1000) not null,
+    description text,
     createTimestamp datetime not null,
     CONSTRAINT `FK_detail_spaceId`	FOREIGN KEY (`spaceId`)	REFERENCES `space` (`spaceId`)
 );
