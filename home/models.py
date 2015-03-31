@@ -77,8 +77,8 @@ class Capacity(models.Model):
 class Detail(models.Model):
     detailId = models.AutoField(db_column='detailId', primary_key=True)
     spaceId = models.ForeignKey('Space', db_column='spaceId')
-    title = models.CharField(max_length=100)
-    description = models.CharField(max_length=100)
+    title = models.CharField(max_length=1000)
+    description = models.TextField()
     createTimestamp = models.DateTimeField(db_column='createTimestamp', default=datetime.now)
 
     class Meta:
