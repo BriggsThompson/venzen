@@ -22,6 +22,7 @@ create table venue (
     zipcode varchar(50) null,
     phoneNumber varchar(50) null,
     email varchar(100) null,
+    totalCapacity mediumint null,
     createTimestamp datetime not null
 );
 
@@ -120,6 +121,16 @@ create table venue_image (
     CONSTRAINT `FK_venue_images_venueId`	FOREIGN KEY (`venueId`)	REFERENCES `venue` (`venueId`)
 );
 
+drop table if exists `venue_floorplan`;
+create table venue_floorplan (
+    venueFloorplanId mediumint primary key not null auto_increment,
+    venueId mediumint not null,
+    floorplan varchar(1000) null,
+    `order` mediumint null,
+    createTimestamp datetime not null,
+    CONSTRAINT `FK_venue_floorplan_venueId`	FOREIGN KEY (`venueId`)	REFERENCES `venue` (`venueId`)
+);
+
 drop table if exists `space_image`;
 create table space_image (
     spaceImageId mediumint primary key not null auto_increment,
@@ -128,6 +139,16 @@ create table space_image (
     `order` mediumint null,
     createTimestamp datetime not null,
     CONSTRAINT `FK_space_images_spaceId`	FOREIGN KEY (`spaceId`)	REFERENCES `space` (`spaceId`)
+);
+
+drop table if exists `space_floorplan`;
+create table space_floorplan (
+    spaceFloorplanId mediumint primary key not null auto_increment,
+    spaceId mediumint not null,
+    floorplan varchar(1000) null,
+    `order` mediumint null,
+    createTimestamp datetime not null,
+    CONSTRAINT `FK_space_floorplan_spaceId`	FOREIGN KEY (`spaceId`)	REFERENCES `space` (`spaceId`)
 );
 
 drop table if exists `requirement`;
@@ -153,8 +174,8 @@ drop table if exists `detail`;
 create table detail (
     detailId mediumint primary key not null auto_increment,
     spaceId mediumint not null,
-    title varchar(100) not null,
-    description varchar(100) not null,
+    title varchar(1000) not null,
+    description text,
     createTimestamp datetime not null,
     CONSTRAINT `FK_detail_spaceId`	FOREIGN KEY (`spaceId`)	REFERENCES `space` (`spaceId`)
 );

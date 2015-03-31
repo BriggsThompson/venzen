@@ -9,10 +9,15 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+import os, sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+
+SITE_DIR = '/home/ubuntu/web/venzen.com/venzen/'
+APP_DIR = '/home/ubuntu/web/venzen.com/venzen/venzen/'
+sys.path.append(SITE_DIR)
+sys.path.append(APP_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -25,12 +30,14 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '54.153.13.143', 'ec2-54-153-13-143.us-west-1.compute.amazonaws.com']
+ALLOWED_HOSTS = ['54.153.13.143']
 
-
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-CONN_MAX_AGE = 10000
+DOMAIN_NAME = '54.153.13.143'
+#CSRF_COOKIE_NAME = 'venzen_csrf'
+#CSRF_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_DOMAIN = DOMAIN_NAME
+#CONN_MAX_AGE = 10000
 # Application definition
 
 INSTALLED_APPS = (
@@ -42,6 +49,7 @@ INSTALLED_APPS = (
     'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    's3direct',
     'home'
 )
 
@@ -57,7 +65,8 @@ MIDDLEWARE_CLASSES = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
-    'django.contrib.auth.context_processors.auth'
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.csrf'
 )
 
 ROOT_URLCONF = 'venzen.urls'
@@ -101,6 +110,48 @@ STATIC_ROOT = '/var/www/venzen/static'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "templates"),)
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3.S3Storage'
+
+S3DIRECT_REGION = 'us-west-1'
+
+AWS_ACCESS_KEY_ID = 'AKIAJJE6EE7SWXKQMBYQ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'venzen-images'
+IMAGE_SPACE_S3_PATH = 'production/space/images'
+IMAGE_SPACE_FLOORPLAN_S3_PATH = 'production/space/floorplans'
+IMAGE_VENUE_S3_PATH = 'production/venue/images'
+IMAGE_VENUE_FLOORPLAN_S3_PATH = 'production/venue/floorplans'
+
+
+def create_filename(filename, path):
+    import uuid
+    ext = filename.split('.')[-1]
+    filename = '%s.%s' % (uuid.uuid4().hex, ext)
+    return os.path.join(path, filename)
+
+
+def create_space_image_filename(filename):
+    return create_filename(filename, IMAGE_SPACE_S3_PATH)
+
+
+def create_space_floorplan_filename(filename):
+    return create_filename(filename, IMAGE_SPACE_FLOORPLAN_S3_PATH)
+
+
+def create_venue_image_filename(filename):
+    return create_filename(filename, IMAGE_VENUE_S3_PATH)
+
+
+def create_venue_floorplan_filename(filename):
+    return create_filename(filename, IMAGE_VENUE_FLOORPLAN_S3_PATH)
+
+S3DIRECT_DESTINATIONS = {
+    'space_images': (create_space_image_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'space_floorplan': (create_space_floorplan_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'venue_images': (create_venue_image_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'venue_floorplan': (create_venue_floorplan_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    }
 
 LOGGING = {
     'version': 1,
