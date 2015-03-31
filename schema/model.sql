@@ -121,6 +121,16 @@ create table venue_image (
     CONSTRAINT `FK_venue_images_venueId`	FOREIGN KEY (`venueId`)	REFERENCES `venue` (`venueId`)
 );
 
+drop table if exists `venue_floorplan`;
+create table venue_floorplan (
+    venueFloorplanId mediumint primary key not null auto_increment,
+    venueId mediumint not null,
+    floorplan varchar(1000) null,
+    `order` mediumint null,
+    createTimestamp datetime not null,
+    CONSTRAINT `FK_venue_floorplan_venueId`	FOREIGN KEY (`venueId`)	REFERENCES `venue` (`venueId`)
+);
+
 drop table if exists `space_image`;
 create table space_image (
     spaceImageId mediumint primary key not null auto_increment,

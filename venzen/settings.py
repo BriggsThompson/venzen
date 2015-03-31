@@ -109,7 +109,9 @@ AWS_ACCESS_KEY_ID = 'AKIAJJE6EE7SWXKQMBYQ'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'venzen-images'
 IMAGE_SPACE_S3_PATH = 'local/space/images'
-IMAGE_FLOORPLAN_S3_PATH = 'local/space/floorplans'
+IMAGE_SPACE_FLOORPLAN_S3_PATH = 'local/space/floorplans'
+IMAGE_VENUE_S3_PATH = 'local/venue/images'
+IMAGE_VENUE_FLOORPLAN_S3_PATH = 'local/venue/floorplans'
 
 
 def create_filename(filename, path):
@@ -119,15 +121,24 @@ def create_filename(filename, path):
     return os.path.join(path, filename)
 
 
-def create_space_filename(filename):
+def create_space_image_filename(filename):
     return create_filename(filename, IMAGE_SPACE_S3_PATH)
 
 
-def create_floorplan_filename(filename):
-    return create_filename(filename, IMAGE_FLOORPLAN_S3_PATH)
+def create_space_floorplan_filename(filename):
+    return create_filename(filename, IMAGE_SPACE_FLOORPLAN_S3_PATH)
 
+
+def create_venue_image_filename(filename):
+    return create_filename(filename, IMAGE_VENUE_S3_PATH)
+
+
+def create_venue_floorplan_filename(filename):
+    return create_filename(filename, IMAGE_VENUE_FLOORPLAN_S3_PATH)
 
 S3DIRECT_DESTINATIONS = {
-    'space_images': (create_space_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
-    'floorplan_images': (create_floorplan_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'space_images': (create_space_image_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'space_floorplan': (create_space_floorplan_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'venue_images': (create_venue_image_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'venue_floorplan': (create_venue_floorplan_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
 }
