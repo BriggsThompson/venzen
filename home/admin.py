@@ -2,7 +2,7 @@ __author__ = 'briggs'
 
 from django.contrib import admin
 from home.models import Venue, Space, Capacity, SpaceAttribute, SpaceFloorplan, VenueAttribute, VenueImage,\
-    Inclusion, Attribute, Requirement, Detail, VenueType, EventType, VenueEvent, SpaceImage, \
+    Inclusion, Attribute, Requirement, Detail, VenueFloorplan, EventType, VenueEvent, SpaceImage, \
     VenueVenueType
 
 
@@ -34,6 +34,11 @@ class VenueEventInline(admin.TabularInline):
 
 class VenueImageInline(admin.TabularInline):
     model = VenueImage
+    extra = 0
+
+
+class VenueFloorplanInline(admin.TabularInline):
+    model = VenueFloorplan
     extra = 0
 
 
@@ -75,6 +80,7 @@ class VenueAdmin(admin.ModelAdmin):
         VenueAttributeInline,
         VenueEventInline,
         VenueImageInline,
+        VenueFloorplanInline,
         SpaceInline,
     ]
 
@@ -143,18 +149,6 @@ class SpaceAttributesAdmin(admin.ModelAdmin):
     get_venue.short_description = 'Venue Name'
     get_space.short_description = 'Space Name'
     get_attribute.short_description = 'Attribute Value'
-
-
-class VenueAttributesAdmin(admin.ModelAdmin):
-    pass
-
-
-class SpaceImagesAdmin(admin.ModelAdmin):
-    pass
-
-
-class VenueImagesAdmin(admin.ModelAdmin):
-    pass
 
 
 class SpaceCapacityAdmin(admin.ModelAdmin):
