@@ -1,8 +1,10 @@
 from __future__ import unicode_literals
 from datetime import datetime
+from django.conf import settings
 
 from django.db import models
 from s3direct.fields import S3DirectField
+from boto.s3.connection import S3Connection, Bucket, Key
 
 
 class Attribute(models.Model):
@@ -137,6 +139,9 @@ class SpaceAttribute(models.Model):
     attributeId = models.ForeignKey(Attribute, db_column='attributeId')
     createTimestamp = models.DateTimeField(db_column='createTimestamp', default=datetime.now)
 
+    def __unicode__(self):
+        return "{0} - {1}".format(self.spaceId.name, self.attributeId.type)
+    
     class Meta:
         db_table = 'space_attribute'
 
@@ -148,8 +153,25 @@ class SpaceImage(models.Model):
     order = models.IntegerField(blank=True, null=True)
     createTimestamp = models.DateTimeField(db_column='createTimestamp', default=datetime.now)
 
+    def __unicode__(self):
+        return "{0} - {1}".format(self.spaceId.name, self.spaceImageId)
+
+    def delete(self, *args, **kwargs):
+        # You have to prepare what you need before delete the model
+        # Delete the model before the file
+        super(SpaceImage, self).delete(*args, **kwargs)
+        # Delete the file after the model
+        conn = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY)
+        bucket = Bucket(conn, settings.AWS_STORAGE_BUCKET_NAME)
+        key = Key(bucket)
+        key.key = "{0}/{1}".format(settings.IMAGE_SPACE_S3_PATH, self.image.rsplit('/', 1)[1])
+        bucket.delete_key(key)
+
+
     class Meta:
-        db_table = 'space_image'
+            db_table = 'space_image'
+
+
 
 
 class Venue(models.Model):

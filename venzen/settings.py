@@ -100,14 +100,23 @@ STATIC_ROOT = '/var/www/venzen/static'
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "templates"),)
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3.S3Storage'
+
+
 S3DIRECT_REGION = 'us-west-1'
 
-AWS_SECRET_ACCESS_KEY = 'AKIAIE3RC5XDNLEZ7YMQ'
-AWS_ACCESS_KEY_ID = 'O/KdJx3zrMUxfAfsdAVZvwYoXwuuF7pdcsGfSrXQ'
-#AWS_STORAGE_BUCKET_NAME = 'venzen-images'
-AWS_STORAGE_BUCKET_NAME = 'rentsy-images'
+AWS_ACCESS_KEY_ID = 'AKIAJJE6EE7SWXKQMBYQ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'venzen-images'
+IMAGE_SPACE_S3_PATH = 'local/space/images'
+
+
+def create_filename(filename):
+    import uuid
+    ext = filename.split('.')[-1]
+    filename = '%s.%s' % (uuid.uuid4().hex, ext)
+    return os.path.join(IMAGE_SPACE_S3_PATH, filename)
 
 S3DIRECT_DESTINATIONS = {
-    #'space_images': ('local/space/images', lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
-    'space_images': ('test', lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
+    'space_images': (create_filename, lambda u: u.is_staff, ['image/jpeg', 'image/png'],),
 }
