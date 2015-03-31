@@ -20,8 +20,18 @@ PRE-REQ
 -------
 0. Download Python https://www.python.org/downloads/
 0. Download Pip https://pip.pypa.io/en/latest/installing.html
-0. Download Mysql / MysqlWorkbench https://pip.pypa.io/en/latest/installing.html
-0. In Terminal: ```pip install mkvirtualenv```
+0. Download Mysql / MysqlWorkbench https://pip.pypa.io/en/latest/installing.html       
+0. In Terminal: 
+    ```pip install virtualenv```
+    ```pip install virtualenvwrapper```
+0. Modify or create ~/.bash_profile and add:
+    
+    ```
+    if [ -f /usr/local/bin/virtualenvwrapper.sh ]
+    then 
+      source /usr/local/bin/virtualenvwrapper.sh
+    fi
+    ```
 
 Setup
 -------
@@ -35,8 +45,10 @@ Create Database
 -------
 Default local database setup is Username:root Password:root
         
-        mysql -uroot -proot < schema/model.sql
+        mysql -uroot -proot < schema/dump/venzendump.sql
     
 Run Web App
 -------
     python manage.py runserver
+    
+The server should now be running on http://localhost:8000/ and http://localhost:8000/admin

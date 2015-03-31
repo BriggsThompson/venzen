@@ -1,0 +1,3 @@
+#!/bin/sh
+ssh -i venzen.pem ubuntu@54.153.13.143 "mysqldump --user=root --password=venzenson --databases venzen > venzendump.sql;"
+scp -i venzen.pem ubuntu@54.153.13.143:/home/ubuntu/venzendump.sql ../schema/dump/venzendump.sql
