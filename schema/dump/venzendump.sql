@@ -16,6 +16,14 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Current Database: `venzen`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `venzen` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `venzen`;
+
+--
 -- Table structure for table `attribute`
 --
 
@@ -154,7 +162,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$15000$OixL8eFJDRuG$J8phdSebw6PfqT4Sc+ZitIANwG8/r9GuTvai/mICjVs=','2015-03-17 14:58:35',1,'briggs','Briggs','Thompson','w.briggs.thompson@gmail.com',1,1,'2015-03-10 00:04:39'),(2,'pbkdf2_sha256$15000$mGEUU4Aj36zX$cqkVvQMFzE5VFHNGphpfAfsYskGAklzLrXGY0wAwP6s=','2015-03-18 03:28:28',0,'matt','Matt','Milbrandt','milbrandtmatt@gmail.com',1,1,'2015-03-14 01:14:39'),(3,'pbkdf2_sha256$15000$k40Yvl2zMBXz$T9srYzfAiU/EeRvGZ8SDPP+A/4emznlxxLfw2LHcIrA=','2015-03-17 17:49:24',0,'callie','Callie','Ogden','callieog@gmail.com',1,1,'2015-03-14 01:14:47'),(4,'pbkdf2_sha256$15000$zehhnOZJOizY$2OeujXUGf6AbATFQQ5P21LEpNZ27KnHe1/vb/zng45s=','2015-03-15 23:09:47',0,'josh','Josh','Fishman','josh@wecreativeagency.com',1,1,'2015-03-14 01:14:54');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$15000$OixL8eFJDRuG$J8phdSebw6PfqT4Sc+ZitIANwG8/r9GuTvai/mICjVs=','2015-03-31 01:34:08',1,'briggs','Briggs','Thompson','w.briggs.thompson@gmail.com',1,1,'2015-03-10 00:04:39'),(2,'pbkdf2_sha256$15000$mGEUU4Aj36zX$cqkVvQMFzE5VFHNGphpfAfsYskGAklzLrXGY0wAwP6s=','2015-03-18 03:28:28',0,'matt','Matt','Milbrandt','milbrandtmatt@gmail.com',1,1,'2015-03-14 01:14:39'),(3,'pbkdf2_sha256$15000$k40Yvl2zMBXz$T9srYzfAiU/EeRvGZ8SDPP+A/4emznlxxLfw2LHcIrA=','2015-03-17 17:49:24',0,'callie','Callie','Ogden','callieog@gmail.com',1,1,'2015-03-14 01:14:47'),(4,'pbkdf2_sha256$15000$zehhnOZJOizY$2OeujXUGf6AbATFQQ5P21LEpNZ27KnHe1/vb/zng45s=','2015-03-15 23:09:47',0,'josh','Josh','Fishman','josh@wecreativeagency.com',1,1,'2015-03-14 01:14:54');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,13 +264,13 @@ DROP TABLE IF EXISTS `detail`;
 CREATE TABLE `detail` (
   `detailId` mediumint(9) NOT NULL AUTO_INCREMENT,
   `spaceId` mediumint(9) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `description` varchar(100) NOT NULL,
+  `title` varchar(1000) NOT NULL,
+  `description` text,
   `createTimestamp` datetime NOT NULL,
   PRIMARY KEY (`detailId`),
   KEY `FK_detail_spaceId` (`spaceId`),
   CONSTRAINT `FK_detail_spaceId` FOREIGN KEY (`spaceId`) REFERENCES `space` (`spaceId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +279,7 @@ CREATE TABLE `detail` (
 
 LOCK TABLES `detail` WRITE;
 /*!40000 ALTER TABLE `detail` DISABLE KEYS */;
-INSERT INTO `detail` VALUES (1,3,'Security guard optional addition','$25/hr per guard','2015-03-18 03:13:00'),(2,3,'Use of the house PA requires Palm Door engineer onsite','$250 Flat rate per shift','2015-03-18 03:13:00'),(3,3,'Additional services=30% markup fee per service.','furniture, tents, entertainment, AV, lighting, decor, internet, parking and event staff ','2015-03-18 03:13:00');
+INSERT INTO `detail` VALUES (1,3,'Security guard optional addition','$25/hr per guard','2015-03-18 03:13:00'),(2,3,'Use of the house PA requires Palm Door engineer onsite','$250 Flat rate per shift','2015-03-18 03:13:00'),(3,3,'Additional services=30% markup fee per service.','furniture, tents, entertainment, AV, lighting, decor, internet, parking and event staff ','2015-03-18 03:13:00'),(4,2,'Staffing','Staffing charges vary per event and are conditioned on specific security needs of the event and the art exhibitions on view at the museum. \r\n\r\n-A minimum of 2 staff (guard/manager on duty) must be present for setup/tear-down.\r\n\r\n-Staff required during museum hours: 3.\r\n\r\n-A minimum of 5 during event @ $125 per hour; if the event is more than 200, then up to 7 staff can be required.\r\n\r\n Security is provided through Frontera Security.','2015-03-31 04:05:49');
 /*!40000 ALTER TABLE `detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +304,7 @@ CREATE TABLE `django_admin_log` (
   KEY `django_admin_log_e8701ad4` (`user_id`),
   CONSTRAINT `djang_content_type_id_697914295151027a_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -305,7 +313,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
-INSERT INTO `django_admin_log` VALUES (1,'2015-03-10 02:55:31','1','Attribute object',1,'',9,1),(2,'2015-03-10 03:12:10','2','Attribute object',1,'',9,1),(3,'2015-03-10 03:12:33','3','Attribute object',1,'',9,1),(4,'2015-03-10 03:12:52','1','Attribute object',2,'Changed value.',9,1),(5,'2015-03-10 03:15:30','1','Venue object',1,'',7,1),(6,'2015-03-10 03:20:40','1','Space object',1,'',8,1),(7,'2015-03-10 03:21:14','2','Space object',1,'',8,1),(8,'2015-03-10 03:32:08','1','Inclusion object',1,'',14,1),(9,'2015-03-10 03:32:31','2','Inclusion object',1,'',14,1),(10,'2015-03-10 03:32:45','3','Inclusion object',1,'',14,1),(11,'2015-03-10 03:33:00','4','Inclusion object',1,'',14,1),(12,'2015-03-10 03:33:14','5','Inclusion object',1,'',14,1),(13,'2015-03-10 03:33:26','6','Inclusion object',1,'',14,1),(14,'2015-03-10 03:33:40','7','Inclusion object',1,'',14,1),(15,'2015-03-10 03:41:55','1','SpaceAttribute object',1,'',16,1),(16,'2015-03-10 03:42:03','2','SpaceAttribute object',1,'',16,1),(17,'2015-03-10 03:59:22','1','SpaceAttribute object',1,'',16,1),(18,'2015-03-10 04:00:40','2','SpaceAttribute object',1,'',16,1),(19,'2015-03-10 04:01:58','1','Requirement object',1,'',15,1),(20,'2015-03-10 04:05:22','1','Capacity object',1,'',10,1),(21,'2015-03-10 04:05:34','2','Capacity object',1,'',10,1),(22,'2015-03-10 04:05:43','3','Capacity object',1,'',10,1),(23,'2015-03-10 04:09:46','1','SpaceCapacity object',1,'',11,1),(24,'2015-03-10 04:09:55','2','SpaceCapacity object',1,'',11,1),(25,'2015-03-10 04:10:02','3','SpaceCapacity object',1,'',11,1),(26,'2015-03-11 00:53:34','1','The Contemporary Austin - 1',1,'',7,1),(27,'2015-03-11 00:54:45','1','The Contemporary Austin - 1',2,'Changed phoneNumber.',7,1),(28,'2015-03-11 01:38:09','1','The Contemporary Austin - Roof Deck',2,'Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\". Added capacity \"Workout Activity\".',8,1),(29,'2015-03-14 01:11:32','1','Content Admin',1,'',2,1),(30,'2015-03-14 01:14:40','2','matt',1,'',3,1),(31,'2015-03-14 01:14:48','3','callie',1,'',3,1),(32,'2015-03-14 01:14:54','4','josh',1,'',3,1),(33,'2015-03-14 01:15:44','4','josh',2,'Changed first_name, last_name, email and groups.',3,1),(34,'2015-03-14 01:15:59','1','briggs',2,'Changed first_name and last_name.',3,1),(35,'2015-03-14 01:16:19','3','callie',2,'Changed is_staff and groups.',3,1),(36,'2015-03-14 01:16:28','4','josh',2,'Changed is_staff.',3,1),(37,'2015-03-14 01:16:48','3','callie',2,'Changed first_name, last_name and email.',3,1),(38,'2015-03-14 01:17:15','2','matt',2,'Changed first_name, last_name, email, is_staff and groups.',3,1),(39,'2015-03-14 01:27:44','1','The Contemporary Austin - 1',2,'Deleted venue venue type \"The Contemporary Austin - Raw Space\". Deleted venue venue type \"The Contemporary Austin - Banquet Hall\". Deleted venue venue type \"The Contemporary Austin - Cafe\".',7,1),(40,'2015-03-17 19:00:11','2','Palm Door on Sixth - 2',1,'',7,3),(41,'2015-03-18 04:11:37','4','The Market & Tap Room - 4',1,'',7,2),(42,'2015-03-18 04:13:17','5','The Market & Tap Room - The Market',2,'Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\".',8,2),(43,'2015-03-18 04:13:45','6','The Market & Tap Room - Tap Room',2,'Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\".',8,2),(44,'2015-03-18 04:14:45','3','Palm Door on Sixth - Indoor',2,'Changed width, length and height. Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\". Added capacity \"Seated For Dining\". Added capacity \"Theater Style\". Added detail \"Detail object\". Added detail \"Detail object\". Added detail \"Detail object\". Added inclusion \"Inclusion object\". Added inclusion \"Inclusion object\". Added requirement \"Palm Door on Sixth - Indoor - Use of the house PA requires Palm Door sound engineer onsite\". Added requirement \"Palm Door on Sixth - Indoor - Number of security guards required\".',8,3),(45,'2015-03-18 04:24:48','5','Palm Door on Sabine - 5',1,'',7,3),(46,'2015-03-18 04:28:27','6','Hangar Lounge - 6',1,'',7,2),(47,'2015-03-18 04:28:50','4','The Market & Tap Room - 4',2,'Changed email.',7,2),(48,'2015-03-18 04:31:47','9','Hangar Lounge - Hangar Lounge',2,'Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\".',8,2),(49,'2015-03-18 04:32:09','7','Palm Door on Sabine - Indoor',2,'Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Seated For Dining\". Added capacity \"Cocktail\". Added inclusion \"Inclusion object\". Added inclusion \"Inclusion object\". Added inclusion \"Inclusion object\". Added inclusion \"Inclusion object\". Added requirement \"Palm Door on Sabine - Indoor - Require 50% of room rental fee with a signed contract to secure your date\". Added requirement \"Palm Door on Sabine - Indoor - $500 damage deposit & final payment will be due two weeks prior to your event.\". Added requirement \"Palm Door on Sabine - Indoor - Pink Avocado in-house caterer\". Added requirement \"Palm Door on Sabine - Indoor - Outside catering= $3500 fee\".',8,3),(50,'2015-03-18 04:40:55','7','The Red Room - 7',1,'',7,2),(51,'2015-03-18 04:43:12','11','The Red Room - Entire Venue',2,'Changed height. Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\".',8,2),(52,'2015-03-18 04:43:46','10','The Red Room - West Lounge',2,'Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\".',8,2),(53,'2015-03-18 04:46:14','8','Brazos Hall - 8',1,'',7,3),(54,'2015-03-19 16:14:14','9','Swan Dive - 9',1,'',7,3),(55,'2015-03-19 16:27:51','10','Trinity Hall - 10',1,'',7,3),(56,'2015-03-19 16:28:49','10','Trinity Hall - 10',2,'Changed phoneNumber and email.',7,3),(57,'2015-03-22 22:39:06','9','Swan Dive - 9',2,'Changed description for space \"Swan Dive - Indoor\".',7,4),(58,'2015-03-22 22:40:26','8','Brazos Hall - 8',2,'Changed description for space \"Brazos Hall - Main Hall\". Changed description for space \"Brazos Hall - Rooftop Deck\".',7,4);
+INSERT INTO `django_admin_log` VALUES (1,'2015-03-10 02:55:31','1','Attribute object',1,'',9,1),(2,'2015-03-10 03:12:10','2','Attribute object',1,'',9,1),(3,'2015-03-10 03:12:33','3','Attribute object',1,'',9,1),(4,'2015-03-10 03:12:52','1','Attribute object',2,'Changed value.',9,1),(5,'2015-03-10 03:15:30','1','Venue object',1,'',7,1),(6,'2015-03-10 03:20:40','1','Space object',1,'',8,1),(7,'2015-03-10 03:21:14','2','Space object',1,'',8,1),(8,'2015-03-10 03:32:08','1','Inclusion object',1,'',14,1),(9,'2015-03-10 03:32:31','2','Inclusion object',1,'',14,1),(10,'2015-03-10 03:32:45','3','Inclusion object',1,'',14,1),(11,'2015-03-10 03:33:00','4','Inclusion object',1,'',14,1),(12,'2015-03-10 03:33:14','5','Inclusion object',1,'',14,1),(13,'2015-03-10 03:33:26','6','Inclusion object',1,'',14,1),(14,'2015-03-10 03:33:40','7','Inclusion object',1,'',14,1),(15,'2015-03-10 03:41:55','1','SpaceAttribute object',1,'',16,1),(16,'2015-03-10 03:42:03','2','SpaceAttribute object',1,'',16,1),(17,'2015-03-10 03:59:22','1','SpaceAttribute object',1,'',16,1),(18,'2015-03-10 04:00:40','2','SpaceAttribute object',1,'',16,1),(19,'2015-03-10 04:01:58','1','Requirement object',1,'',15,1),(20,'2015-03-10 04:05:22','1','Capacity object',1,'',10,1),(21,'2015-03-10 04:05:34','2','Capacity object',1,'',10,1),(22,'2015-03-10 04:05:43','3','Capacity object',1,'',10,1),(23,'2015-03-10 04:09:46','1','SpaceCapacity object',1,'',11,1),(24,'2015-03-10 04:09:55','2','SpaceCapacity object',1,'',11,1),(25,'2015-03-10 04:10:02','3','SpaceCapacity object',1,'',11,1),(26,'2015-03-11 00:53:34','1','The Contemporary Austin - 1',1,'',7,1),(27,'2015-03-11 00:54:45','1','The Contemporary Austin - 1',2,'Changed phoneNumber.',7,1),(28,'2015-03-11 01:38:09','1','The Contemporary Austin - Roof Deck',2,'Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\". Added capacity \"Workout Activity\".',8,1),(29,'2015-03-14 01:11:32','1','Content Admin',1,'',2,1),(30,'2015-03-14 01:14:40','2','matt',1,'',3,1),(31,'2015-03-14 01:14:48','3','callie',1,'',3,1),(32,'2015-03-14 01:14:54','4','josh',1,'',3,1),(33,'2015-03-14 01:15:44','4','josh',2,'Changed first_name, last_name, email and groups.',3,1),(34,'2015-03-14 01:15:59','1','briggs',2,'Changed first_name and last_name.',3,1),(35,'2015-03-14 01:16:19','3','callie',2,'Changed is_staff and groups.',3,1),(36,'2015-03-14 01:16:28','4','josh',2,'Changed is_staff.',3,1),(37,'2015-03-14 01:16:48','3','callie',2,'Changed first_name, last_name and email.',3,1),(38,'2015-03-14 01:17:15','2','matt',2,'Changed first_name, last_name, email, is_staff and groups.',3,1),(39,'2015-03-14 01:27:44','1','The Contemporary Austin - 1',2,'Deleted venue venue type \"The Contemporary Austin - Raw Space\". Deleted venue venue type \"The Contemporary Austin - Banquet Hall\". Deleted venue venue type \"The Contemporary Austin - Cafe\".',7,1),(40,'2015-03-17 19:00:11','2','Palm Door on Sixth - 2',1,'',7,3),(41,'2015-03-18 04:11:37','4','The Market & Tap Room - 4',1,'',7,2),(42,'2015-03-18 04:13:17','5','The Market & Tap Room - The Market',2,'Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\".',8,2),(43,'2015-03-18 04:13:45','6','The Market & Tap Room - Tap Room',2,'Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\".',8,2),(44,'2015-03-18 04:14:45','3','Palm Door on Sixth - Indoor',2,'Changed width, length and height. Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\". Added capacity \"Seated For Dining\". Added capacity \"Theater Style\". Added detail \"Detail object\". Added detail \"Detail object\". Added detail \"Detail object\". Added inclusion \"Inclusion object\". Added inclusion \"Inclusion object\". Added requirement \"Palm Door on Sixth - Indoor - Use of the house PA requires Palm Door sound engineer onsite\". Added requirement \"Palm Door on Sixth - Indoor - Number of security guards required\".',8,3),(45,'2015-03-18 04:24:48','5','Palm Door on Sabine - 5',1,'',7,3),(46,'2015-03-18 04:28:27','6','Hangar Lounge - 6',1,'',7,2),(47,'2015-03-18 04:28:50','4','The Market & Tap Room - 4',2,'Changed email.',7,2),(48,'2015-03-18 04:31:47','9','Hangar Lounge - Hangar Lounge',2,'Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\".',8,2),(49,'2015-03-18 04:32:09','7','Palm Door on Sabine - Indoor',2,'Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Seated For Dining\". Added capacity \"Cocktail\". Added inclusion \"Inclusion object\". Added inclusion \"Inclusion object\". Added inclusion \"Inclusion object\". Added inclusion \"Inclusion object\". Added requirement \"Palm Door on Sabine - Indoor - Require 50% of room rental fee with a signed contract to secure your date\". Added requirement \"Palm Door on Sabine - Indoor - $500 damage deposit & final payment will be due two weeks prior to your event.\". Added requirement \"Palm Door on Sabine - Indoor - Pink Avocado in-house caterer\". Added requirement \"Palm Door on Sabine - Indoor - Outside catering= $3500 fee\".',8,3),(50,'2015-03-18 04:40:55','7','The Red Room - 7',1,'',7,2),(51,'2015-03-18 04:43:12','11','The Red Room - Entire Venue',2,'Changed height. Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\".',8,2),(52,'2015-03-18 04:43:46','10','The Red Room - West Lounge',2,'Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added space attribute \"SpaceAttribute object\". Added capacity \"Cocktail\".',8,2),(53,'2015-03-18 04:46:14','8','Brazos Hall - 8',1,'',7,3),(54,'2015-03-19 16:14:14','9','Swan Dive - 9',1,'',7,3),(55,'2015-03-19 16:27:51','10','Trinity Hall - 10',1,'',7,3),(56,'2015-03-19 16:28:49','10','Trinity Hall - 10',2,'Changed phoneNumber and email.',7,3),(57,'2015-03-22 22:39:06','9','Swan Dive - 9',2,'Changed description for space \"Swan Dive - Indoor\".',7,4),(58,'2015-03-22 22:40:26','8','Brazos Hall - 8',2,'Changed description for space \"Brazos Hall - Main Hall\". Changed description for space \"Brazos Hall - Rooftop Deck\".',7,4),(59,'2015-03-31 01:35:39','15','Trinity Hall - Indoor',2,'Added space image \"Indoor - 1\".',8,1),(60,'2015-03-31 01:35:52','15','Trinity Hall - Indoor',2,'Deleted space image \"Indoor - None\".',8,1),(61,'2015-03-31 03:00:17','12','Brazos Hall - Main Hall',2,'Added space image \"Main Hall - 2\". Added space floorplan \"Main Hall - 1\".',8,1),(62,'2015-03-31 03:02:45','12','Brazos Hall - Main Hall',2,'Deleted space image \"Main Hall - None\". Deleted space floorplan \"Main Hall - None\".',8,1),(63,'2015-03-31 03:50:08','10','Trinity Hall - 10',2,'Added venue venue type \"Trinity Hall - Banquet Hall\". Added venue image \"Trinity Hall - 1\". Added venue floorplan \"Trinity Hall - 1\".',7,1),(64,'2015-03-31 03:50:20','10','Trinity Hall - 10',2,'Deleted venue image \"Trinity Hall - None\". Deleted venue floorplan \"Trinity Hall - None\".',7,1),(65,'2015-03-31 04:08:08','2','The Contemporary Austin - Community Room',2,'Added detail \"Detail object\".',8,3);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +331,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `django_content_type_app_label_45f3b1d93ec8c61c_uniq` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -332,7 +340,7 @@ CREATE TABLE `django_content_type` (
 
 LOCK TABLES `django_content_type` WRITE;
 /*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'permission','auth','permission'),(2,'group','auth','group'),(3,'user','auth','user'),(4,'content type','contenttypes','contenttype'),(5,'session','sessions','session'),(6,'log entry','admin','logentry'),(7,'venue','home','venue'),(8,'space','home','space'),(9,'attribute','home','attribute'),(10,'capacity','home','capacity'),(11,'space capacity','home','spacecapacity'),(12,'cost','home','cost'),(13,'detail','home','detail'),(14,'inclusion','home','inclusion'),(15,'requirement','home','requirement'),(16,'space attribute','home','spaceattribute'),(17,'space image','home','spaceimage'),(18,'venue attribute','home','venueattribute'),(19,'venue image','home','venueimage'),(20,'venue venue type','home','venuevenuetype'),(21,'venue event','home','venueevent');
+INSERT INTO `django_content_type` VALUES (1,'permission','auth','permission'),(2,'group','auth','group'),(3,'user','auth','user'),(4,'content type','contenttypes','contenttype'),(5,'session','sessions','session'),(6,'log entry','admin','logentry'),(7,'venue','home','venue'),(8,'space','home','space'),(9,'attribute','home','attribute'),(10,'capacity','home','capacity'),(11,'space capacity','home','spacecapacity'),(12,'cost','home','cost'),(13,'detail','home','detail'),(14,'inclusion','home','inclusion'),(15,'requirement','home','requirement'),(16,'space attribute','home','spaceattribute'),(17,'space image','home','spaceimage'),(18,'venue attribute','home','venueattribute'),(19,'venue image','home','venueimage'),(20,'venue venue type','home','venuevenuetype'),(21,'venue event','home','venueevent'),(22,'space floorplan','home','spacefloorplan'),(23,'venue floorplan','home','venuefloorplan');
 /*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,7 +392,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('1dkzxo4dxvuwd9ci04moustbhosb3x8x','NzI0NDNmZmRlOTFjN2QyNjBlYzE0MTMzYmZhYjBhYTQ2MmIzYmViYTp7Il9hdXRoX3VzZXJfaGFzaCI6ImRkN2ZlN2FhNGJjZDJhNDBjMjdmOTUzYjAxZmI0ZTA1ODk0ZTYwZjciLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjN9','2015-03-28 02:08:35'),('4ok7ifyg4m3j8sv4u2fiifm6scffmnbq','YmViNjg0MGI3MjUwNTE3MDU1NmVlNTc2Y2RhMWFkN2Q0NGMyNmNlMDp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzMzFiZjkzZmVhMGUyMjhiNjk1MTA2MjJlOWMyN2RhNjcyMWQ3NTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-03-28 01:26:20'),('8fx8sjbdoi0l2v7aq7cbtbgfk72i4m9g','NzNmYmM1NjM3MTE3ZTFhZTRlYzRlMzYwNmI4NmU0ZjEwNzk5MWRjMjp7Il9hdXRoX3VzZXJfaGFzaCI6ImI2YTM2MzlmNTAzNGMzN2NjYTI3Mzc2YjI5MWQ0YzhlYTllYWVkNGIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjJ9','2015-03-31 16:23:46'),('axew2zbzhe9csqeq6dyp6b2i5kfs15j6','Mzc4NWEyOGQxOTczMDYzNTFmZDNkOWUzNzNiODk2OGJlMzIxYzZmZDp7Il9hdXRoX3VzZXJfaGFzaCI6IjA0YTBiY2MyMDZmZWRjNjA1NzE3MzdkMzQyZGQ3ZTQxYzdkMDBjYTUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjR9','2015-03-28 02:44:59'),('gormctijmvit8isjek5mu9r5sauuk678','Mzc4NWEyOGQxOTczMDYzNTFmZDNkOWUzNzNiODk2OGJlMzIxYzZmZDp7Il9hdXRoX3VzZXJfaGFzaCI6IjA0YTBiY2MyMDZmZWRjNjA1NzE3MzdkMzQyZGQ3ZTQxYzdkMDBjYTUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjR9','2015-03-29 23:09:47'),('j2wqwuvt0fqckizn7ybus59yxi2zorjq','YmViNjg0MGI3MjUwNTE3MDU1NmVlNTc2Y2RhMWFkN2Q0NGMyNmNlMDp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzMzFiZjkzZmVhMGUyMjhiNjk1MTA2MjJlOWMyN2RhNjcyMWQ3NTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-03-28 01:10:59'),('k2zv35g01mupxostfiumf3qfp1pyob0j','YmViNjg0MGI3MjUwNTE3MDU1NmVlNTc2Y2RhMWFkN2Q0NGMyNmNlMDp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzMzFiZjkzZmVhMGUyMjhiNjk1MTA2MjJlOWMyN2RhNjcyMWQ3NTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-03-24 00:04:53'),('lhs8eveu99l4au3mm21moethmbdcp87d','YmViNjg0MGI3MjUwNTE3MDU1NmVlNTc2Y2RhMWFkN2Q0NGMyNmNlMDp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzMzFiZjkzZmVhMGUyMjhiNjk1MTA2MjJlOWMyN2RhNjcyMWQ3NTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-03-31 14:58:35'),('n45otxqn5zn0w2zqllfr1z90ahk4p8oa','NzNmYmM1NjM3MTE3ZTFhZTRlYzRlMzYwNmI4NmU0ZjEwNzk5MWRjMjp7Il9hdXRoX3VzZXJfaGFzaCI6ImI2YTM2MzlmNTAzNGMzN2NjYTI3Mzc2YjI5MWQ0YzhlYTllYWVkNGIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjJ9','2015-04-01 03:28:28'),('s72xtmwheya4x69e9wvrka12hljm224l','NzI0NDNmZmRlOTFjN2QyNjBlYzE0MTMzYmZhYjBhYTQ2MmIzYmViYTp7Il9hdXRoX3VzZXJfaGFzaCI6ImRkN2ZlN2FhNGJjZDJhNDBjMjdmOTUzYjAxZmI0ZTA1ODk0ZTYwZjciLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjN9','2015-03-31 17:49:24');
+INSERT INTO `django_session` VALUES ('1dkzxo4dxvuwd9ci04moustbhosb3x8x','NzI0NDNmZmRlOTFjN2QyNjBlYzE0MTMzYmZhYjBhYTQ2MmIzYmViYTp7Il9hdXRoX3VzZXJfaGFzaCI6ImRkN2ZlN2FhNGJjZDJhNDBjMjdmOTUzYjAxZmI0ZTA1ODk0ZTYwZjciLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjN9','2015-03-28 02:08:35'),('4ok7ifyg4m3j8sv4u2fiifm6scffmnbq','YmViNjg0MGI3MjUwNTE3MDU1NmVlNTc2Y2RhMWFkN2Q0NGMyNmNlMDp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzMzFiZjkzZmVhMGUyMjhiNjk1MTA2MjJlOWMyN2RhNjcyMWQ3NTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-03-28 01:26:20'),('8fx8sjbdoi0l2v7aq7cbtbgfk72i4m9g','NzNmYmM1NjM3MTE3ZTFhZTRlYzRlMzYwNmI4NmU0ZjEwNzk5MWRjMjp7Il9hdXRoX3VzZXJfaGFzaCI6ImI2YTM2MzlmNTAzNGMzN2NjYTI3Mzc2YjI5MWQ0YzhlYTllYWVkNGIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjJ9','2015-03-31 16:23:46'),('axew2zbzhe9csqeq6dyp6b2i5kfs15j6','Mzc4NWEyOGQxOTczMDYzNTFmZDNkOWUzNzNiODk2OGJlMzIxYzZmZDp7Il9hdXRoX3VzZXJfaGFzaCI6IjA0YTBiY2MyMDZmZWRjNjA1NzE3MzdkMzQyZGQ3ZTQxYzdkMDBjYTUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjR9','2015-03-28 02:44:59'),('bb8f2hhqeex9lyth030gyxibl4rb99hd','YmViNjg0MGI3MjUwNTE3MDU1NmVlNTc2Y2RhMWFkN2Q0NGMyNmNlMDp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzMzFiZjkzZmVhMGUyMjhiNjk1MTA2MjJlOWMyN2RhNjcyMWQ3NTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-04-14 01:34:08'),('gormctijmvit8isjek5mu9r5sauuk678','Mzc4NWEyOGQxOTczMDYzNTFmZDNkOWUzNzNiODk2OGJlMzIxYzZmZDp7Il9hdXRoX3VzZXJfaGFzaCI6IjA0YTBiY2MyMDZmZWRjNjA1NzE3MzdkMzQyZGQ3ZTQxYzdkMDBjYTUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjR9','2015-03-29 23:09:47'),('j2wqwuvt0fqckizn7ybus59yxi2zorjq','YmViNjg0MGI3MjUwNTE3MDU1NmVlNTc2Y2RhMWFkN2Q0NGMyNmNlMDp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzMzFiZjkzZmVhMGUyMjhiNjk1MTA2MjJlOWMyN2RhNjcyMWQ3NTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-03-28 01:10:59'),('k2zv35g01mupxostfiumf3qfp1pyob0j','YmViNjg0MGI3MjUwNTE3MDU1NmVlNTc2Y2RhMWFkN2Q0NGMyNmNlMDp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzMzFiZjkzZmVhMGUyMjhiNjk1MTA2MjJlOWMyN2RhNjcyMWQ3NTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-03-24 00:04:53'),('lhs8eveu99l4au3mm21moethmbdcp87d','YmViNjg0MGI3MjUwNTE3MDU1NmVlNTc2Y2RhMWFkN2Q0NGMyNmNlMDp7Il9hdXRoX3VzZXJfaGFzaCI6ImYzMzFiZjkzZmVhMGUyMjhiNjk1MTA2MjJlOWMyN2RhNjcyMWQ3NTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjF9','2015-03-31 14:58:35'),('n45otxqn5zn0w2zqllfr1z90ahk4p8oa','NzNmYmM1NjM3MTE3ZTFhZTRlYzRlMzYwNmI4NmU0ZjEwNzk5MWRjMjp7Il9hdXRoX3VzZXJfaGFzaCI6ImI2YTM2MzlmNTAzNGMzN2NjYTI3Mzc2YjI5MWQ0YzhlYTllYWVkNGIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjJ9','2015-04-01 03:28:28'),('s72xtmwheya4x69e9wvrka12hljm224l','NzI0NDNmZmRlOTFjN2QyNjBlYzE0MTMzYmZhYjBhYTQ2MmIzYmViYTp7Il9hdXRoX3VzZXJfaGFzaCI6ImRkN2ZlN2FhNGJjZDJhNDBjMjdmOTUzYjAxZmI0ZTA1ODk0ZTYwZjciLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOjN9','2015-03-31 17:49:24');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -486,8 +494,8 @@ CREATE TABLE `space` (
   `width` mediumint(9) DEFAULT NULL,
   `length` mediumint(9) DEFAULT NULL,
   `height` mediumint(9) DEFAULT NULL,
-  `deposit` decimal(10,0) NOT NULL,
-  `cleaningFee` decimal(10,0) NOT NULL,
+  `deposit` decimal(10,0) DEFAULT NULL,
+  `cleaningFee` decimal(10,0) DEFAULT NULL,
   `costStartRange` decimal(10,0) DEFAULT NULL,
   `costEndRange` decimal(10,0) DEFAULT NULL,
   `costDetails` varchar(500) DEFAULT NULL,
@@ -540,6 +548,34 @@ INSERT INTO `space_attribute` VALUES (17,1,2,'2015-03-11 01:37:29'),(18,5,19,'20
 UNLOCK TABLES;
 
 --
+-- Table structure for table `space_floorplan`
+--
+
+DROP TABLE IF EXISTS `space_floorplan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `space_floorplan` (
+  `spaceFloorplanId` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `spaceId` mediumint(9) NOT NULL,
+  `floorplan` varchar(1000) DEFAULT NULL,
+  `order` mediumint(9) DEFAULT NULL,
+  `createTimestamp` datetime NOT NULL,
+  PRIMARY KEY (`spaceFloorplanId`),
+  KEY `FK_space_floorplan_spaceId` (`spaceId`),
+  CONSTRAINT `FK_space_floorplan_spaceId` FOREIGN KEY (`spaceId`) REFERENCES `space` (`spaceId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `space_floorplan`
+--
+
+LOCK TABLES `space_floorplan` WRITE;
+/*!40000 ALTER TABLE `space_floorplan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `space_floorplan` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `space_image`
 --
 
@@ -555,7 +591,7 @@ CREATE TABLE `space_image` (
   PRIMARY KEY (`spaceImageId`),
   KEY `FK_space_images_spaceId` (`spaceId`),
   CONSTRAINT `FK_space_images_spaceId` FOREIGN KEY (`spaceId`) REFERENCES `space` (`spaceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -586,6 +622,7 @@ CREATE TABLE `venue` (
   `zipcode` varchar(50) DEFAULT NULL,
   `phoneNumber` varchar(50) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
+  `totalCapacity` mediumint(9) DEFAULT NULL,
   `createTimestamp` datetime NOT NULL,
   PRIMARY KEY (`venueId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -597,7 +634,7 @@ CREATE TABLE `venue` (
 
 LOCK TABLES `venue` WRITE;
 /*!40000 ALTER TABLE `venue` DISABLE KEYS */;
-INSERT INTO `venue` VALUES (1,'The Contemporary Austin','Host your next event in exquisite style at The Contemporary Austin’s downtown location! A well-\r\nrecognized, beautiful historic building, the Jones Center offers inspiring surroundings that foster creativity and showcase sophistication right on Austin’s famed Congress Avenue in the heart of downtown.\r\n\r\nThe building opened in 1877 as Tobin Drug Store. In 1915, it became the Queen Theater, and morphed again in 1955 into the Lerner Department Store. At last, in 1996 it became Arthouse at the Jones Center and underwent an ambitious renovation and expansion in 2010. In 2011, the Austin Museum of Art (AMOA) merged with Arthouse to form AMOA-Arthouse—now reborn as The Contemporary Austin under new leadership and a refreshed mission and vision.','The Contemporary Austin reflects the spectrum of contemporary art through exhibitions, commissions, education, and the collection.','700 Congress Avenue','','Austin','TX','78701','512-458-8191 x 255','siterentals@thecontemporaryaustin.org','2015-03-11 00:47:01'),(2,'Palm Door on Sixth','A contemporary event venue located in Downtown Austin’s historic entertainment district.\r\n\r\nPalm Door on Sixth’s versatile layout comfortably accommodates intimate dinners for 50+ people, an \r\naudience of up to 250 seats, banquets for up to 300 guests and cocktail receptions for up to 800+. \r\n\r\nThe official breakdown of standing capacity is 332 in the Main Room and 167 in the West Annex for a \r\ncombined capacity of 499 indoors. Our outdoor courtyard adds an additional capacity of 500 standing \r\nfor Palm Door on Sixth to accommodate groups of up to 1000 total.','','508 E 6th Street','','Austin','Texas','78701','(512) 391-1994','info@palmdoor.com','2015-03-17 18:31:40'),(4,'The Market & Tap Room','The inside of The Market is warm and inviting with exposed brick and wood everywhere you look. The staff is even more inviting, willing to take time to make you a carefully crafted classic American cocktail with a modern twist.','','319 Colorado St.','','Austin','Texas','78701','(512) 472-6662','clarissa@themarketaustin.com/','2015-03-18 03:41:46'),(5,'Palm Door on Sabine','Palm Door on Sabine is an urban loft event center located in downtown Austin.\r\n\r\nRoom Rental:\r\nRates are based on a 6 or 10 hour time block including furniture and an on-site Venue Manager.','','401 Sabine Street','','Austin','Texas','78701','(512) 391-1994','info@palmdoor.com','2015-03-18 04:15:06'),(6,'Hangar Lounge','Custom*','Custom*',' 318 Colorado St,','','Austin','Texas','78701','512-474-4264','clarissa@themarketaustin.com/','2015-03-18 04:22:02'),(7,'The Red Room','This is a unique space located in the heart of downtown, on 3rd street. It\'s an underground venue-the entry is on street level  and you walk down into the lounge space that\'s open to the public for wine tastings and by the glass/bottle. It has a very sexy, jazzy, masculine vibe to it-lots of leather couches (high quality and super comfy) and dim lighting, exposed wood beams on the ceiling, and local art (that\'s available for purchase) displayed on the walls. The venue is split into two sections-one of which is open to the public (semi-private) and one is specifically for events (there isn\'t a door, just a curtain, so it dances on the line of semi-private and private).','','','','','','','512-501-1536','lydia@redroomatx.com','2015-03-18 04:33:48'),(8,'Brazos Hall','Brazos Hall is a turn-of-the-century warehouse building at the corner of 4th and Brazos, now converted to Austin\'s premier event space. With its restored long-leaf pine floors, brick walls and wood rafters, Brazos Hall is a venue unlike any other in the heart of downtown. In addition to the 10,000 square feet in the Main Hall, Brazos Hall offers a 3,500 square foot Rooftop Deck with downtown views.There is a 16’ loading dock in the rear. \r\n\r\nThe Hall has an ADA compliant 7’ freight elevator. Both levels are equipped with full men’s and women’s facilities.','','204 EAST 4TH STREET','','AUSTIN','Texas','78701','',' INFO@BRAZOSHALL.COM ','2015-03-18 04:32:51'),(9,'Swan Dive','Swan Dive is located in the heart of Austin’s Cultural district on the corner of Red River and 7th, within walking distance from the Convention Center. It’s clad in white tapestries, and decorated with custom handmade furniture and lounging areas. Swan Dive hosts a wide range of events, including Live Music, Company Parties, Mixers, Presentations, Swing Dancing, Salsa,2-Step, Burlesque, DJ Sets and non-profit fundraisers.\r\n\r\nSwan Dive has 2 stages, (inside & outside) fully wired with a professional grade sound and lighting system, operated by The Werd Company. Backline can be provided, along with event planning, production, experiential marketing, on-site photographer, etc. Rates are negotiable and are dependent on your needs.\r\n\r\n*Swan Dive is permitted for outside sound and is an official SXSW venue.','','615 Red River Street','','Austin','Texas','78701','(512) 614-4235','swandivebookingatx@gmail.com','2015-03-19 16:06:32'),(10,'Trinity Hall','Trinity Hall is a multi-purpose private event center in the heart of downtown Austin.\r\n\r\nThis customizable space can accommodate a wide array of event configurations and set-ups for up to a capacity of 600 people.\r\n\r\nTrinity Hall is available to rent for product launches, music concerts, temporary exhibition space, trade shows, cocktail parties, holiday parties, weddings, corporate events and more.\r\n\r\nTrinity Hall also offers a full professional commercial kitchen space available to rent or for vendors to prepare during events.','','311 E 5th Street','','Austin','Texas','78701','(512)270-4421','info@trinityhall.com','2015-03-19 16:16:16');
+INSERT INTO `venue` VALUES (1,'The Contemporary Austin','Host your next event in exquisite style at The Contemporary Austin’s downtown location! A well-\r\nrecognized, beautiful historic building, the Jones Center offers inspiring surroundings that foster creativity and showcase sophistication right on Austin’s famed Congress Avenue in the heart of downtown.\r\n\r\nThe building opened in 1877 as Tobin Drug Store. In 1915, it became the Queen Theater, and morphed again in 1955 into the Lerner Department Store. At last, in 1996 it became Arthouse at the Jones Center and underwent an ambitious renovation and expansion in 2010. In 2011, the Austin Museum of Art (AMOA) merged with Arthouse to form AMOA-Arthouse—now reborn as The Contemporary Austin under new leadership and a refreshed mission and vision.','The Contemporary Austin reflects the spectrum of contemporary art through exhibitions, commissions, education, and the collection.','700 Congress Avenue','','Austin','TX','78701','512-458-8191 x 255','siterentals@thecontemporaryaustin.org',NULL,'2015-03-11 00:47:01'),(2,'Palm Door on Sixth','A contemporary event venue located in Downtown Austin’s historic entertainment district.\r\n\r\nPalm Door on Sixth’s versatile layout comfortably accommodates intimate dinners for 50+ people, an \r\naudience of up to 250 seats, banquets for up to 300 guests and cocktail receptions for up to 800+. \r\n\r\nThe official breakdown of standing capacity is 332 in the Main Room and 167 in the West Annex for a \r\ncombined capacity of 499 indoors. Our outdoor courtyard adds an additional capacity of 500 standing \r\nfor Palm Door on Sixth to accommodate groups of up to 1000 total.','','508 E 6th Street','','Austin','Texas','78701','(512) 391-1994','info@palmdoor.com',NULL,'2015-03-17 18:31:40'),(4,'The Market & Tap Room','The inside of The Market is warm and inviting with exposed brick and wood everywhere you look. The staff is even more inviting, willing to take time to make you a carefully crafted classic American cocktail with a modern twist.','','319 Colorado St.','','Austin','Texas','78701','(512) 472-6662','clarissa@themarketaustin.com/',NULL,'2015-03-18 03:41:46'),(5,'Palm Door on Sabine','Palm Door on Sabine is an urban loft event center located in downtown Austin.\r\n\r\nRoom Rental:\r\nRates are based on a 6 or 10 hour time block including furniture and an on-site Venue Manager.','','401 Sabine Street','','Austin','Texas','78701','(512) 391-1994','info@palmdoor.com',NULL,'2015-03-18 04:15:06'),(6,'Hangar Lounge','Custom*','Custom*',' 318 Colorado St,','','Austin','Texas','78701','512-474-4264','clarissa@themarketaustin.com/',NULL,'2015-03-18 04:22:02'),(7,'The Red Room','This is a unique space located in the heart of downtown, on 3rd street. It\'s an underground venue-the entry is on street level  and you walk down into the lounge space that\'s open to the public for wine tastings and by the glass/bottle. It has a very sexy, jazzy, masculine vibe to it-lots of leather couches (high quality and super comfy) and dim lighting, exposed wood beams on the ceiling, and local art (that\'s available for purchase) displayed on the walls. The venue is split into two sections-one of which is open to the public (semi-private) and one is specifically for events (there isn\'t a door, just a curtain, so it dances on the line of semi-private and private).','','','','','','','512-501-1536','lydia@redroomatx.com',NULL,'2015-03-18 04:33:48'),(8,'Brazos Hall','Brazos Hall is a turn-of-the-century warehouse building at the corner of 4th and Brazos, now converted to Austin\'s premier event space. With its restored long-leaf pine floors, brick walls and wood rafters, Brazos Hall is a venue unlike any other in the heart of downtown. In addition to the 10,000 square feet in the Main Hall, Brazos Hall offers a 3,500 square foot Rooftop Deck with downtown views.There is a 16’ loading dock in the rear. \r\n\r\nThe Hall has an ADA compliant 7’ freight elevator. Both levels are equipped with full men’s and women’s facilities.','','204 EAST 4TH STREET','','AUSTIN','Texas','78701','',' INFO@BRAZOSHALL.COM ',NULL,'2015-03-18 04:32:51'),(9,'Swan Dive','Swan Dive is located in the heart of Austin’s Cultural district on the corner of Red River and 7th, within walking distance from the Convention Center. It’s clad in white tapestries, and decorated with custom handmade furniture and lounging areas. Swan Dive hosts a wide range of events, including Live Music, Company Parties, Mixers, Presentations, Swing Dancing, Salsa,2-Step, Burlesque, DJ Sets and non-profit fundraisers.\r\n\r\nSwan Dive has 2 stages, (inside & outside) fully wired with a professional grade sound and lighting system, operated by The Werd Company. Backline can be provided, along with event planning, production, experiential marketing, on-site photographer, etc. Rates are negotiable and are dependent on your needs.\r\n\r\n*Swan Dive is permitted for outside sound and is an official SXSW venue.','','615 Red River Street','','Austin','Texas','78701','(512) 614-4235','swandivebookingatx@gmail.com',NULL,'2015-03-19 16:06:32'),(10,'Trinity Hall','Trinity Hall is a multi-purpose private event center in the heart of downtown Austin.\r\n\r\nThis customizable space can accommodate a wide array of event configurations and set-ups for up to a capacity of 600 people.\r\n\r\nTrinity Hall is available to rent for product launches, music concerts, temporary exhibition space, trade shows, cocktail parties, holiday parties, weddings, corporate events and more.\r\n\r\nTrinity Hall also offers a full professional commercial kitchen space available to rent or for vendors to prepare during events.','','311 E 5th Street','','Austin','Texas','78701','(512)270-4421','info@trinityhall.com',NULL,'2015-03-19 16:16:16');
 /*!40000 ALTER TABLE `venue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -662,6 +699,34 @@ INSERT INTO `venue_event` VALUES (1,1,1,'2015-03-11 00:47:01'),(2,1,3,'2015-03-1
 UNLOCK TABLES;
 
 --
+-- Table structure for table `venue_floorplan`
+--
+
+DROP TABLE IF EXISTS `venue_floorplan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `venue_floorplan` (
+  `venueFloorplanId` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `venueId` mediumint(9) NOT NULL,
+  `floorplan` varchar(1000) DEFAULT NULL,
+  `order` mediumint(9) DEFAULT NULL,
+  `createTimestamp` datetime NOT NULL,
+  PRIMARY KEY (`venueFloorplanId`),
+  KEY `FK_venue_floorplan_venueId` (`venueId`),
+  CONSTRAINT `FK_venue_floorplan_venueId` FOREIGN KEY (`venueId`) REFERENCES `venue` (`venueId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `venue_floorplan`
+--
+
+LOCK TABLES `venue_floorplan` WRITE;
+/*!40000 ALTER TABLE `venue_floorplan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `venue_floorplan` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `venue_image`
 --
 
@@ -677,7 +742,7 @@ CREATE TABLE `venue_image` (
   PRIMARY KEY (`venueImageId`),
   KEY `FK_venue_images_venueId` (`venueId`),
   CONSTRAINT `FK_venue_images_venueId` FOREIGN KEY (`venueId`) REFERENCES `venue` (`venueId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -731,7 +796,7 @@ CREATE TABLE `venue_venue_type` (
   KEY `FK_venueVenueTypeId_eventTypeId` (`venueTypeId`),
   CONSTRAINT `FK_venueVenueTypeId_eventTypeId` FOREIGN KEY (`venueTypeId`) REFERENCES `venue_type` (`venueTypeId`),
   CONSTRAINT `FK_venueVenueTypeId_venueId` FOREIGN KEY (`venueId`) REFERENCES `venue` (`venueId`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -740,6 +805,7 @@ CREATE TABLE `venue_venue_type` (
 
 LOCK TABLES `venue_venue_type` WRITE;
 /*!40000 ALTER TABLE `venue_venue_type` DISABLE KEYS */;
+INSERT INTO `venue_venue_type` VALUES (4,10,1,'2015-03-31 03:49:02');
 /*!40000 ALTER TABLE `venue_venue_type` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -752,4 +818,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-03-27  0:56:23
+-- Dump completed on 2015-03-31 16:53:22
