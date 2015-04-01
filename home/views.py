@@ -14,3 +14,10 @@ def listings(request):
     return render_to_response("venue-search.html", {
         'test': [1,2,3]
     }, context_instance=RequestContext(request))
+
+
+def venue_page(request):
+
+    return render_to_response("venue-information.html", {
+        'test': [1,2,3]
+    }, context_instance=RequestContext(request))
