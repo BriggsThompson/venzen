@@ -2,9 +2,8 @@ Venue Zen
 =============
 Venue Zen is a prototype for venue bookings. The MVP is to display venues information regarding with the option of requesting a quote. After getting feedback, we hope to build a scheduling system / venue management system with CRM tooling, email, etc. that will enable the venues to advertise and organize in an efficient and cheap manner. 
 
-Strategy
--------
-Admin Tool will enable   
+Currently, the admin is the lifeblood and will enable staff to add / modify venues and spaces with all attributes, types, and details. Image and floorplan upload is active and sends content to S3.   
+Once we build up the content, the templates will be productionized and hooked into to the data model and we will release the MVP.  
 
 Stack
 -------
