@@ -3,3 +3,7 @@
 *.pyc
 *.iml
 /templates/unused/
+/templates/venzen/
+/templates/config.codekit
+.htaccess
+config.codekit
