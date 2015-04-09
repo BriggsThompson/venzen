@@ -154,7 +154,7 @@ $(document).ready(function() {
 		}); 
 	}
 	// Sortable list
-	$('#ulSorList').mixitup();
+	// $('#ulSorList').mixitup();
 	// Fancybox
 	$(".theater").fancybox();
 	// Fancybox	
@@ -180,21 +180,21 @@ $(document).ready(function() {
 		  });
 	}
 	// Milestone counter
-	$('.milestone-count').countTo({
-        //from: 50,
-        //to: 250,
-        //speed: 1000,
-        //refreshInterval: 50,
-        formatter: function (value, options) {
-            return value.toFixed(options.decimals);
-        },
-        onUpdate: function (value) {
-            console.debug(this);
-        },
-        onComplete: function (value) {
-            console.debug(this);
-        }
-    });
+	// $('.milestone-count').countTo({
+ //        //from: 50,
+ //        //to: 250,
+ //        //speed: 1000,
+ //        //refreshInterval: 50,
+ //        formatter: function (value, options) {
+ //            return value.toFixed(options.decimals);
+ //        },
+ //        onUpdate: function (value) {
+ //            console.debug(this);
+ //        },
+ //        onComplete: function (value) {
+ //            console.debug(this);
+ //        }
+ //    });
     // Range sliders
     if($('.range-slider-wrapper').length > 0){
     	var customToolTip = $.Link({
